@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.DjobMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Djob">
+        <result column="quan_d" jdbcType="DECIMAL" property="quanD" />
+        <result column="coun" jdbcType="INTEGER" property="coun" />
+    </resultMap>
+    
+    <select id="queryDjobByTank" parameterType="String" resultMap="BaseResultMap">
+        SELECT sum(balance*kgs)/1000 as quan_d,
+            count(*) as coun
+        FROM djob
+        where d IS NULL or d = ''
+            and (status ='DFC'or status = 'TCL')
+            and balance > 0
+            and slop=0
+            and flag>=1
+            and LEFT(tank,1)<![CDATA[<>]]>'I'
+            and tank =#{tank}
+    </select>
+
+</mapper>

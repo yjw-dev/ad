@@ -1,0 +1,45 @@
+server:
+  # 访问路径
+  servlet:
+    context-path: /yshyerp-vehicle/api
+  # 端口
+  port: 8081
+# 数据库连接
+spring:
+  datasource:
+    #url: jdbc:sqlserver://10.208.2.7:1433;databaseName=invdbf
+    #username: etss_inv
+    #password: 66123
+    url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
+    username: sa
+    password: 1qaz@wsx
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+# mybatis绑定
+mybatis:
+  type-aliases-package: com.yshyerp.vehicle.entity
+  mapper-locations: classpath:mapping/*.xml
+# 将sql语句输出到日志
+logging:
+  level:
+    com:
+      yshyerp: debug
+
+# 分页配置
+pagehelper:
+  helper-dialect: sqlserver
+  # 配置reasonable为 true，这时如果 pageNum <= 0 会查询第一页，如果 pageNum > pages 会查询最后一页
+  reasonable: true
+  # 如果 pageSize=0 或者 RowBounds.limit = 0 就会查询出全部的结果
+  pageSizeZero: true
+  params: count=countsql
+  support-methods-arguments: true
+
+data:
+  mongodb:
+    database: yshyerp
+    host: 192.168.1.241
+    port: 27017
+
+mongoDb:
+  crcExceptionCollection: crcExceptionCollection
+  crcServiceCollection: crcServiceCollection

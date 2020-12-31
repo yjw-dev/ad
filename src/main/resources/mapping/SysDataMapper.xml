@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.SysDataMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.SysData">
+        <result column="login_enable" property="loginEnable" jdbcType="CHAR" />
+        <result column="version_no" property="versionNo" jdbcType="CHAR" />
+        <result column="cdc_no" property="cdcNo" jdbcType="CHAR" />
+        <result column="crc_no" property="crcNo" jdbcType="CHAR" />
+        <result column="ttc_no" property="ttcNo" jdbcType="CHAR" />
+        <result column="adc_no" property="adcNo" jdbcType="CHAR" />
+        <result column="dra_no" property="draNo" jdbcType="CHAR" />
+        <result column="dfc_no" property="dfcNo" jdbcType="CHAR" />
+        <result column="mix_no" property="mixNo" jdbcType="CHAR" />
+        <result column="qsa_no" property="qsaNo" jdbcType="CHAR" />
+        <result column="eta_no" property="etaNo" jdbcType="CHAR" />
+        <result column="job_no" property="jobNo" jdbcType="CHAR" />
+        <result column="ship_no" property="shipNo" jdbcType="CHAR" />
+        <result column="vessel_no" property="vesselNo" jdbcType="CHAR" />
+        <result column="bulk_no" property="bulkNo" jdbcType="CHAR" />
+        <result column="freetax_no" property="freetaxNo" jdbcType="CHAR" />
+        <result column="djob_no" property="djobNo" jdbcType="CHAR" />
+        <result column="sjob_no" property="sjobNo" jdbcType="CHAR" />
+        <result column="send_no" property="sendNo" jdbcType="CHAR" />
+        <result column="auth_acno" property="authAcNo" jdbcType="CHAR" />
+        <result column="edmno" property="edmNo" jdbcType="CHAR" />
+        <result column="dmno" property="dmNo" jdbcType="CHAR" />
+        <result column="fee_no" property="feeNo" jdbcType="CHAR" />
+        <result column="plan_no" property="planNo" jdbcType="CHAR" />
+        <result column="ReceivablesID" property="receivablesId" jdbcType="CHAR" />
+        <result column="useno" property="useNo" jdbcType="CHAR" />
+        <result column="amountno" property="amountNo" jdbcType="CHAR" />
+        <result column="w1" property="w1" jdbcType="CHAR" />
+        <result column="w2" property="w2" jdbcType="CHAR" />
+        <result column="c1" property="c1" jdbcType="CHAR" />
+        <result column="c2" property="c2" jdbcType="CHAR" />
+    </resultMap>
+
+    <select id="querySysData" resultMap="BaseResultMap">
+      select *
+      from sysdata
+    </select>
+
+    <update id="updSysDataIdToPlanNo" parameterType="String" >
+      update sysdata
+      set plan_no=#{planNo}
+    </update>
+
+    <update id="updSysDataIdToJobNo" parameterType="String" >
+      update sysdata
+      set job_no=#{jobNo}
+    </update>
+
+</mapper>

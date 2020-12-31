@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yshyerp.vehicle.mapper.VehiWMapper" >
+  <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.VehiW" >
+    <result column="vehicle" property="vehicle" jdbcType="CHAR" />
+    <result column="vehicle1" property="vehicle1" jdbcType="CHAR" />
+    <result column="vehi_w" property="vehiW" jdbcType="DECIMAL" />
+    <result column="vehi_v" property="vehiV" jdbcType="DECIMAL" />
+    <result column="weight1" property="weight1" jdbcType="DECIMAL" />
+    <result column="jobno" property="jobno" jdbcType="CHAR" />
+  </resultMap>
+
+  <resultMap id="vehiW2ResultMap" type="com.yshyerp.vehicle.entity.VehiW2" >
+    <result column="vehicle" property="vehicle" jdbcType="CHAR" />
+    <result column="vehi_w2" property="vehiW2" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <resultMap id="vehiW3ResultMap" type="com.yshyerp.vehicle.entity.VehiW3" >
+    <result column="vehicle1" property="vehicle1" jdbcType="CHAR" />
+    <result column="vehi_w3" property="vehiW3" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <resultMap id="cnoVResultMap" type="com.yshyerp.vehicle.entity.CnoV" >
+    <result column="c_no" property="cNo" jdbcType="CHAR" />
+    <result column="vehi_v" property="vehiV" jdbcType="DECIMAL" />
+    <result column="vehi_w" property="vehiW" jdbcType="DECIMAL" />
+    <result column="jobno" property="jobno" jdbcType="CHAR" />
+  </resultMap>
+
+
+
+  <!--根据车牌号和挂车号查询核定载重-->
+  <select id="getVehicleDetailByVehicleAndVehicle1" parameterType="map" resultMap="BaseResultMap">
+      select *
+      FROM vehi_w
+      where vehicle=#{vehicle}
+        and vehicle1=#{vehicle1}
+      order by jobno desc
+  </select>
+
+  <!--根据车牌号查询准牵引重量-->
+  <select id="getVehiW2ByVehicle" parameterType="String" resultMap="vehiW2ResultMap">
+    SELECT distinct *
+    FROM vehi_w2
+    where vehicle = #{vehicle}
+    order by jobno desc
+  </select>
+
+  <!--根据挂车号查询挂车重量-->
+  <select id="getVehiW3ByVehicle1" parameterType="String" resultMap="vehiW3ResultMap">
+    SELECT distinct *
+    FROM vehi_w3
+    where vehicle1 = #{vehicle1}
+    order by jobno desc
+  </select>
+
+  <!--根据箱号查询容积、箱重-->
+  <select id="getTxtcNoDetail" parameterType="String" resultMap="cnoVResultMap">
+    select distinct *
+    from cno_v
+    where c_no = #{txtcNo}
+    order by jobno desc
+  </select>
+
+  <!--根据车牌号查询槽车出入仓临时记录表-->
+  <select id="getTtdcTempVehicle" parameterType="String" resultType="Integer">
+    SELECT count(*) as NUM_VEHI
+    FROM ttdctemp
+    WHERE d IS NULL or d = ''
+      and ISIN =1
+      and VEHICLE =#{vehicle}
+  </select>
+
+</mapper>

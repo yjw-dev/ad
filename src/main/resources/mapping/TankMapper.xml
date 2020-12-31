@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.TankMapper">
+  <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Tank">
+    <result column="code" jdbcType="CHAR" property="code" />
+    <result column="code1" jdbcType="CHAR" property="code1" />
+    <result column="d" jdbcType="CHAR" property="d" />
+    <result column="tank" jdbcType="CHAR" property="tank" />
+    <result column="tax" jdbcType="BIT" property="tax" />
+    <result column="batch_no" jdbcType="CHAR" property="batchNo" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="t_customer" jdbcType="CHAR" property="tCustomer" />
+    <result column="c_customer" jdbcType="CHAR" property="cCustomer" />
+    <result column="commodity" jdbcType="CHAR" property="commodity" />
+    <result column="oil" jdbcType="BIT" property="oil" />
+    <result column="oil_o" jdbcType="BIT" property="oilO" />
+    <result column="tank_h" jdbcType="CHAR" property="tankH" />
+    <result column="max_h" jdbcType="CHAR" property="maxH" />
+    <result column="max_v" jdbcType="CHAR" property="maxV" />
+    <result column="safety_h" jdbcType="CHAR" property="safetyH" />
+    <result column="safety_v" jdbcType="CHAR" property="safetyV" />
+    <result column="klitre_cm" jdbcType="CHAR" property="klitreCm" />
+    <result column="pipe_line" jdbcType="CHAR" property="pipeLine" />
+    <result column="gauge_m" jdbcType="DECIMAL" property="gaugeM" />
+    <result column="density" jdbcType="DECIMAL" property="density" />
+    <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+    <result column="m_balance" jdbcType="DECIMAL" property="mBalance" />
+    <result column="h_quan" jdbcType="DECIMAL" property="hQuan" />
+    <result column="lowest_vol" jdbcType="DECIMAL" property="lowestVol" />
+    <result column="limit_vol" jdbcType="DECIMAL" property="limitVol" />
+    <result column="crr_vol" jdbcType="DECIMAL" property="crrVol" />
+    <result column="crr_vol_use" jdbcType="BIT" property="crrVolUse" />
+    <result column="lock_tank" jdbcType="BIT" property="lockTank" />
+    <result column="phase" jdbcType="CHAR" property="phase" />
+    <result column="commence" jdbcType="TIMESTAMP" property="commence" />
+    <result column="thruput_mi" jdbcType="DECIMAL" property="thruputMi" />
+    <result column="station1" jdbcType="CHAR" property="station1" />
+    <result column="station2" jdbcType="CHAR" property="station2" />
+    <result column="station3" jdbcType="CHAR" property="station3" />
+    <result column="c_status" jdbcType="BIT" property="cStatus" />
+    <result column="t_use" jdbcType="CHAR" property="tUse" />
+    <result column="last_comm" jdbcType="CHAR" property="lastComm" />
+    <result column="tenant" jdbcType="CHAR" property="tenant" />
+    <result column="update_d" jdbcType="TIMESTAMP" property="updateD" />
+    <result column="crc" jdbcType="BIT" property="crc" />
+    <result column="crc_1" jdbcType="BIT" property="crc1" />
+    <result column="coa" jdbcType="BIT" property="coa" />
+    <result column="coa1" jdbcType="CHAR" property="coa1" />
+    <result column="coa_p" jdbcType="DECIMAL" property="coaP" />
+    <result column="crr_use" jdbcType="BIT" property="crrUse" />
+    <result column="fd" jdbcType="BIT" property="fd" />
+    <result column="fd_weight" jdbcType="DECIMAL" property="fdWeight" />
+    <result column="q1" jdbcType="DECIMAL" property="q1" />
+    <result column="q2" jdbcType="DECIMAL" property="q2" />
+    <result column="bs" jdbcType="BIT" property="bs" />
+    <result column="g_type" jdbcType="NCHAR" property="gType" />
+    <result column="r" jdbcType="DECIMAL" property="r" />
+    <result column="t" jdbcType="DECIMAL" property="t" />
+    <result column="m" jdbcType="DECIMAL" property="m" />
+    <result column="xfz" jdbcType="BIT" property="xfz" />
+    <result column="temp1" jdbcType="DECIMAL" property="temp1" />
+    <result column="temp2" jdbcType="DECIMAL" property="temp2" />
+    <result column="n2" jdbcType="CHAR" property="n2" />
+    <result column="hot" jdbcType="BIT" property="hot" />
+    <result column="cool" jdbcType="BIT" property="cool" />
+    <result column="tg" jdbcType="BIT" property="tg" />
+    <result column="bw" jdbcType="BIT" property="bw" />
+    <result column="jr" jdbcType="CHAR" property="jr" />
+    <result column="hx" jdbcType="BIT" property="hx" />
+    <result column="zh" jdbcType="BIT" property="zh" />
+    <result column="u_date" jdbcType="TIMESTAMP" property="uDate" />
+    <result column="allow_comm" jdbcType="CHAR" property="allowComm" />
+    <result column="q_difference" jdbcType="DECIMAL" property="qDifference" />
+  </resultMap>
+
+  <!--查询所有储罐信息-->
+  <select id="queryTankInfo" resultMap="BaseResultMap">
+        select rtrim(tank) tank,
+          rtrim(t_customer) t_customer,
+          rtrim(c_customer) c_customer,
+          rtrim(commodity) commodity,
+          quantity,
+          quantity - q1 q_difference,
+          lowest_vol
+        from tank
+        where (d IS NULL or d = '')
+        order by tank
+  </select>
+
+  <select id="queryTankInfoByTank" parameterType="String" resultMap="BaseResultMap">
+      select *
+        from tank
+        where (d IS NULL or d = '')
+        and tank=#{tank}
+        order by tank
+  </select>
+
+  <select id="queryDensityByCrcTable" parameterType="String" resultType="String">
+    select top 1 DENS_15C2
+    from crc
+    where dens_15c2<![CDATA[<>]]>''
+      and commodity=#{commodity}
+    order by crc_no desc
+  </select>
+
+</mapper>

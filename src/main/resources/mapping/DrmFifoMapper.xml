@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.DrmFifoMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.DrmFifo">
+        <result column="dono" jdbcType="CHAR" property="doNo" />
+    </resultMap>
+
+    <select id="queryDrmFifoByDoNo" resultMap="BaseResultMap" parameterType="String">
+        SELECT
+          dono
+        FROM
+          drm_fifo
+        where d IS NULL or d = ''
+          and dono=#{doNo}
+    </select>
+</mapper>
+

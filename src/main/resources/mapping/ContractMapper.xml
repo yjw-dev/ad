@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.ContractMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Contract">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="contract_i" jdbcType="CHAR" property="contractI" />
+        <result column="d" jdbcType="CHAR" property="d" />
+        <result column="customer" jdbcType="CHAR" property="customer" />
+        <result column="st_date" jdbcType="DATE" property="stDate" />
+        <result column="en_date" jdbcType="DATE" property="enDate" />
+        <result column="chk_date" jdbcType="DATE" property="chkDate" />
+        <result column="con_long" jdbcType="CHAR" property="conLong" />
+        <result column="tank" jdbcType="CHAR" property="tank" />
+        <result column="commodity" jdbcType="CHAR" property="commodity" />
+        <result column="min_input" jdbcType="NUMERIC" property="minInput" />
+    </resultMap>
+
+
+    <!--根据罐主名称查询合同信息-->
+    <select id="queryContractListByCustomer" parameterType="String" resultMap="BaseResultMap">
+        SELECT *
+        FROM contract
+        WHERE (d IS NULL or d = '')
+          and DATEDIFF(dd,en_date,GETDATE())<![CDATA[<=]]>0
+          and customer=#{customer}
+    </select>
+
+</mapper>

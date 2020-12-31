@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yshyerp.vehicle.mapper.TrustMapper" >
+
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Trust" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="d" property="d" jdbcType="CHAR" />
+        <result column="t_customer" property="tCustomer" jdbcType="CHAR" />
+        <result column="c_customer" property="customer" jdbcType="CHAR" />
+        <result column="crr_no" property="crrNo" jdbcType="CHAR" />
+        <result column="date1" property="date1" jdbcType="TIMESTAMP" />
+        <result column="time1" property="time1" jdbcType="CHAR" />
+        <result column="i_customer" property="iCustomer" jdbcType="CHAR" />
+        <result column="out_way" property="outWay" jdbcType="CHAR" />
+        <result column="tank" property="tank" jdbcType="CHAR" />
+        <result column="commodity" property="commodity" jdbcType="CHAR" />
+        <result column="packing" property="packing" jdbcType="CHAR" />
+        <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="prt_qty" property="prtQty" jdbcType="DECIMAL" />
+        <result column="balance" property="balance" jdbcType="DECIMAL" />
+        <result column="trust" property="trust" jdbcType="BIT" />
+        <result column="cust_no" property="custNo" jdbcType="CHAR" />
+        <result column="inward_no" property="inwardNo" jdbcType="CHAR" />
+        <result column="outward_no" property="outwardNo" jdbcType="CHAR" />
+        <result column="date2" property="date2" jdbcType="TIMESTAMP" />
+        <result column="time2" property="time2" jdbcType="CHAR" />
+        <result column="prn_date" property="prnDate" jdbcType="TIMESTAMP" />
+        <result column="prn_time" property="prnTime" jdbcType="CHAR" />
+        <result column="pass_date" property="passDate" jdbcType="TIMESTAMP" />
+        <result column="pass_time" property="passTime" jdbcType="CHAR" />
+        <result column="done" property="done" jdbcType="BIT" />
+        <result column="transfer" property="transfer" jdbcType="BIT" />
+        <result column="remarks" property="remarks" jdbcType="CHAR" />
+        <result column="btd" property="btd" jdbcType="BIT" />
+        <result column="ch_qty" property="chQty" jdbcType="DECIMAL" />
+        <result column="trade_p" property="tradeP" jdbcType="CHAR" />
+        <result column="tax" property="tax" jdbcType="BIT" />
+        <result column="drums" property="drums" jdbcType="DECIMAL" />
+        <result column="d_tare" property="dTare" jdbcType="DECIMAL" />
+        <result column="new" property="newOld" jdbcType="CHAR" />
+        <result column="tare" property="tare" jdbcType="DECIMAL" />
+        <result column="trade_scms" property="tradeScms" jdbcType="CHAR" />
+        <result column="auth_no" property="authNo" jdbcType="CHAR" />
+        <result column="auth_no0" property="authNo0" jdbcType="CHAR" />
+        <result column="[check]" property="check" jdbcType="BIT" />
+        <result column="do_bal" property="doBal" jdbcType="DECIMAL" />
+        <result column="zzs" property="zzs" jdbcType="DECIMAL" />
+        <result column="gs" property="gs" jdbcType="DECIMAL" />
+        <result column="lock" property="lock" jdbcType="BIT" />
+    </resultMap>
+
+    <!--根据货主名称和货品查询委托书信息-->
+    <select id="queryTrustByCustomerAndCommodity" parameterType="map" resultMap="BaseResultMap">
+        SELECT crr_no,
+          c_customer,
+          commodity,
+          quantity,
+          pass_date,
+          balance
+        FROM trust
+        where (d IS NULL or d = '')
+          and balance>0
+          and c_customer=#{cCustomer}
+          and commodity=#{commodity}
+          and lock<![CDATA[<>]]>1
+          and datediff(yy,date2,GETDATE())<![CDATA[<=]]>3
+    </select>
+
+    <select id="queryTrustByCrrNo" parameterType="String" resultMap="BaseResultMap">
+        SELECT crr_no,
+          c_customer,
+          commodity,
+          quantity,
+          pass_date,
+          balance
+        FROM trust
+        where (d IS NULL or d = '')
+          and lock<![CDATA[<>]]>1
+          and crr_no=#{crrNo}
+    </select>
+
+    <update id="updTrustByCrrNo" parameterType="map">
+      update trust
+      set date2=#{date2}
+        balance= #{balance}
+        done=#{done}
+      where crr_no=#{crrNo}
+    </update>
+
+</mapper>

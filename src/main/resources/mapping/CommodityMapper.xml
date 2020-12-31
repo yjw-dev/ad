@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.CommodityMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Commodity">
+        <result column="code" jdbcType="CHAR" property="code" />
+        <result column="commodity" jdbcType="CHAR" property="commodity" />
+        <result column="fullname" jdbcType="CHAR" property="fullName" />
+        <result column="cname" jdbcType="CHAR" property="cName" />
+        <result column="density" jdbcType="DECIMAL" property="density" />
+        <result column="comm_code" jdbcType="CHAR" property="commCode" />
+        <result column="d" jdbcType="CHAR" property="d" />
+        <result column="wx" jdbcType="BIT" property="wx" />
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="order1" jdbcType="DECIMAL" property="order1" />
+        <result column="flash" jdbcType="DECIMAL" property="flash" />
+        <result column="nature" jdbcType="CHAR" property="nature" />
+    </resultMap>
+
+    <select id="queryCommodityByCommodity" parameterType="String" resultMap="BaseResultMap">
+      SELECT *
+      FROM commodity
+      WHERE (d IS NULL or d = '')
+        AND  commodity=#{commodity}
+    </select>
+
+    <update id="updTankDensity" parameterType="map">
+      update tank
+      set DENSITY=#{tankDensity}
+      where (d IS NULL or d = '')
+	    and tank =#{tank}
+    </update>
+</mapper>
+
+
+
+

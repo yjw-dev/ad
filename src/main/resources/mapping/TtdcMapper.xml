@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yshyerp.vehicle.mapper.TtdcMapper" >
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Ttdc">
+        <result column="do_no" jdbcType="CHAR" property="doNo" />
+        <result column="ttdc_no" jdbcType="CHAR" property="ttdcNo" />
+    </resultMap>
+
+    <select id="queryTtdcByDoNo"  resultMap="BaseResultMap" parameterType="String">
+      select ttdc_no,
+        do_no
+      from ttdc
+      where (d IS NULL or d = '')
+      and do_no=#{doNo}
+    </select>
+
+
+</mapper>

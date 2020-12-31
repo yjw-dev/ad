@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yshyerp.vehicle.mapper.PickingScheduleMapper">
+
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.VehiPlan">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="d" property="d" jdbcType="CHAR" />
+        <result column="plan_type" property="planType" jdbcType="CHAR" />
+        <result column="plan_no" property="planNo" jdbcType="CHAR" />
+        <result column="billid" property="billid" jdbcType="INTEGER" />
+        <result column="contract_i" property="contractI" jdbcType="CHAR" />
+        <result column="vehicle" property="vehicle" jdbcType="CHAR" />
+        <result column="vehicle1" property="vehicle1" jdbcType="CHAR" />
+        <result column="vehi_v" property="vehiV" jdbcType="DECIMAL" />
+        <result column="vehi_w" property="vehiW" jdbcType="DECIMAL" />
+        <result column="vehi_w1" property="vehiW1" jdbcType="DECIMAL" />
+        <result column="vehi_w2" property="vehiW2" jdbcType="DECIMAL" />
+        <result column="vehi_w3" property="vehiW3" jdbcType="DECIMAL" />
+        <result column="c_no" property="boxNo" jdbcType="CHAR" />
+        <result column="idno" property="idNo" jdbcType="CHAR" />
+        <result column="r_date" property="rDate" jdbcType="TIMESTAMP" />
+        <result column="d_date" property="dDate" jdbcType="TIMESTAMP" />
+        <result column="v_date" property="vDate" jdbcType="DECIMAL" />
+        <result column="original" property="original" jdbcType="BIT" />
+        <result column="bdo" property="bdo" jdbcType="BIT" />
+        <result column="faxno" property="faxNo" jdbcType="CHAR" />
+        <result column="t_customer" property="tankCustomer" jdbcType="CHAR" />
+        <result column="c_customer" property="customer" jdbcType="CHAR" />
+        <result column="s_customer" property="smallCustomer" jdbcType="CHAR" />
+        <result column="commodity" property="commodity" jdbcType="CHAR" />
+        <result column="commodity1" property="commodity1" jdbcType="CHAR" />
+        <result column="tank" property="tank" jdbcType="CHAR" />
+        <result column="crr_no" property="crrNo" jdbcType="CHAR" />
+        <result column="do_no" property="doNo" jdbcType="CHAR" />
+        <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="remarks" property="remarks" jdbcType="CHAR" />
+        <result column="delivered" property="delivered" jdbcType="CHAR" />
+        <result column="tno1" property="tno1" jdbcType="CHAR" />
+        <result column="no1" property="no1" jdbcType="CHAR" />
+        <result column="drums" property="drums" jdbcType="DECIMAL" />
+        <result column="packing" property="packing" jdbcType="DECIMAL" />
+        <result column="netweight" property="netweight" jdbcType="DECIMAL" />
+        <result column="new" property="oldNew" jdbcType="CHAR" />
+        <result column="color" property="color" jdbcType="CHAR" />
+        <result column="tare" property="tare" jdbcType="DECIMAL" />
+        <result column="cover" property="cover" jdbcType="BIT" />
+        <result column="batch" property="batch" jdbcType="CHAR" />
+        <result column="come" property="come" jdbcType="CHAR" />
+        <result column="slop" property="slop" jdbcType="BIT" />
+        <result column="type" property="type" jdbcType="CHAR" />
+        <result column="status" property="status" jdbcType="CHAR" />
+        <result column="code" property="code" jdbcType="CHAR" />
+        <result column="p_bar" property="pBar" jdbcType="BIT" />
+        <result column="state" property="state" jdbcType="CHAR" />
+        <result column="jobno" property="jobNo" jdbcType="CHAR" />
+        <result column="tempStatus" property="tempStatus" jdbcType="CHAR" />
+    </resultMap>
+
+    <insert id="savePickingSchedule" parameterType="com.yshyerp.vehicle.vo.TankListVO">
+    Insert into vehi_plan (plan_no,
+        vehicle,
+        vehicle1,
+        vehi_w,
+        vehi_v,
+        vehi_w1,
+        vehi_w2,
+        vehi_w3,
+        c_no,
+        tank,
+        t_customer,
+        c_customer,
+        crr_no,
+        do_no,
+        original,
+        bdo,
+        commodity,
+        commodity1,
+        d_date,
+        v_date,
+        r_date,
+        delivered,
+        quantity,
+        idno,
+        faxno,
+        remarks,
+        plan_type,
+        contract_i,
+        billid)
+    values (#{planNo},
+        #{txtVehicle},
+        #{txtVehicle1},
+        #{txtVehiW},
+        #{vehiV},
+        #{vehiW1},
+        #{txtVehiW2},
+        #{txtVehiW3},
+        #{boxNo},
+        #{tank},
+        #{tankCustomer},
+        #{customer},
+        #{crrNo},
+        #{doNo},
+        #{original},
+        #{bdo},
+        #{commodity},
+        #{comm1},
+        #{estimateDate},
+        #{effectiveDays},
+        GETDATE(),
+        #{delivered},
+        #{quantity},
+        #{idno},
+        #{faxno},
+        #{remarks},
+        'TTDC',
+        #{contractI},
+        #{billid}
+        )
+    </insert>
+
+    <select id="queryPickingschedulelist" parameterType="com.yshyerp.vehicle.vo.VehiPlanVO" resultMap="BaseResultMap">
+      select '1' tempStatus,
+        vehicle,
+        d_date,
+        tank,
+        t_customer,
+        c_customer,
+        commodity,
+        crr_no,
+        do_no,
+        plan_no,
+        vehicle1,
+        idno
+      from vehi_plan v
+      where (d IS NULL or d = '')
+        and v.jobno =''
+        <if test="vehicle != null and vehicle != ''">
+        and v.vehicle like CONCAT('%',#{vehicle},'%')
+        </if>
+        <if test="tank != null and tank != ''">
+            and v.tank like CONCAT('%',#{tank},'%')
+        </if>
+        <if test="tankCustomer != null and tankCustomer != ''">
+            and v.t_customer like CONCAT('%',#{tankCustomer},'%')
+        </if>
+        <if test="customer != null and customer != ''">
+            and v.c_customer like CONCAT('%',#{customer},'%')
+        </if>
+        <if test="commodity != null and commodity != ''">
+            and v.commodity like CONCAT('%',#{commodity},'%')
+        </if>
+    </select>
+
+    <select id="queryPickingSchedule" parameterType="String" resultMap="BaseResultMap">
+      select *
+      from vehi_plan v
+      where (d IS NULL or d = '')
+        and plan_no = #{planNo}
+    </select>
+
+    <update id="updPickingSchedule" parameterType="com.yshyerp.vehicle.vo.TankListVO">
+        update vehi_plan set
+            vehicle=#{txtVehicle},
+            vehicle1=#{txtVehicle1},
+            vehi_w=#{txtVehiW},
+            vehi_v=#{vehiV},
+            vehi_w1=#{vehiW1},
+            vehi_w2=#{txtVehiW2},
+            vehi_w3=#{txtVehiW3},
+            c_no=#{boxNo},
+            tank=#{tank},
+            t_customer=#{tankCustomer},
+            c_customer=#{customer},
+            crr_no=#{crrNo},
+            do_no=#{doNo},
+            original=#{original},
+            bdo=#{bdo},
+            commodity=#{commodity},
+            commodity1=#{comm1},
+            d_date=#{estimateDate},
+            v_date=#{effectiveDays},
+            delivered=#{delivered},
+            quantity=#{quantity},
+            idno=#{idno},
+            faxno=#{faxno},
+            remarks=#{remarks},
+            contract_i=#{contractI},
+            billid=#{billid}
+        where (d IS NULL or d = '')
+            and plan_no = #{planNo}
+    </update>
+
+    <!--逻辑删除一条提货计划-->
+    <update id="deletePickingSchedule" parameterType="String">
+        UPDATE vehi_plan
+        SET d='D'
+        WHERE plan_no=#{planNo}
+    </update>
+
+    <update id="updJobNo" parameterType="map">
+        UPDATE vehi_plan
+        SET jobno=#{jobNo}
+        WHERE plan_no=#{planNo}
+    </update>
+</mapper>

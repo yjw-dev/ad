@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.TankVehicleInOutMapper">
+
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.TtdcTemp">
+        <result column="vehicle" property="vehicle" jdbcType="CHAR" />
+        <result column="vehicle1" property="vehicle1" jdbcType="CHAR" />
+        <result column="date0" property="date0" jdbcType="TIMESTAMP" />
+        <result column="t_customer" property="tankCustomer" jdbcType="CHAR" />
+        <result column="c_customer" property="customer" jdbcType="CHAR" />
+        <result column="commodity" property="commodity" jdbcType="CHAR" />
+        <result column="crr_no" property="crrNo" jdbcType="CHAR" />
+        <result column="do_no" property="doNo" jdbcType="CHAR" />
+        <result column="tank" property="tank" jdbcType="CHAR" />
+        <result column="tempStatus" property="tempStatus" jdbcType="CHAR" />
+        <result column="idno" property="idNo" jdbcType="CHAR" />
+        <result column="date1" property="date1" jdbcType="TIMESTAMP" />
+        <result column="time1" property="time1" jdbcType="CHAR" />
+        <result column="station" property="station" jdbcType="CHAR" />
+        <result column="plan_no" property="planNo" jdbcType="CHAR" />
+    </resultMap>
+
+    <resultMap id="BaseResultMap2" type="com.yshyerp.vehicle.entity.Weighbridge">
+        <result column="weight1" property="weight1" jdbcType="DECIMAL" />
+        <result column="st1" property="st1" jdbcType="CHAR" />
+        <result column="weight2" property="weight2" jdbcType="DECIMAL" />
+        <result column="st2" property="st2" jdbcType="CHAR" />
+        <result column="Id" property="id" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="queryTankVehicleInList" parameterType="com.yshyerp.vehicle.vo.TankVehicleListVO" resultMap="BaseResultMap">
+      select '1' tempStatus,
+        vehicle,
+        d_date date0,
+        tank,
+        t_customer,
+        c_customer,
+        commodity,
+        crr_no,
+        do_no,
+        plan_no,
+        vehicle1,
+        idno,
+		null date1,
+		null time1,
+		null station
+      from vehi_plan v
+      where (d IS NULL or d = '')
+        and jobno =''
+        and vehicle like CONCAT('%',#{vehicle},'%')
+        and tank like CONCAT('%',#{tank},'%')
+        and t_customer like CONCAT('%',#{tankCustomer},'%')
+        and c_customer like CONCAT('%',#{customer},'%')
+        and commodity like CONCAT('%',#{commodity},'%')
+    union
+    select '2' tempStatus,
+        vehicle,
+        date0,
+        tank,
+        t_customer,
+        c_customer,
+        commodity,
+        crr_no,
+        do_no,
+        jobno plan_no,
+        vehicle1,
+        idno,
+        date1,
+        time1,
+        station
+    from ttdctemp
+    where (d IS NULL or d = '')
+        and vehicle like CONCAT('%',#{vehicle},'%')
+        and tank like CONCAT('%',#{tank},'%')
+        and t_customer like CONCAT('%',#{tankCustomer},'%')
+        and c_customer like CONCAT('%',#{customer},'%')
+        and commodity like CONCAT('%',#{commodity},'%')
+        and idno like CONCAT('%',#{idNo},'%')
+        and crr_no like CONCAT('%',#{crrNo},'%')
+        and do_no like CONCAT('%',#{doNo},'%')
+    </select>
+    
+    <update id="updStartSwitch1" parameterType="String">
+      update sysdata
+      set w1_sw = #{startSwitch}
+    </update>
+
+    <update id="updStartSwitch2" parameterType="String">
+      update sysdata
+      set w2_sw = #{startSwitch}
+    </update>
+
+    <select id="queryWeighbridge" resultMap="BaseResultMap2">
+      select * from weight
+  </select>
+
+
+</mapper>

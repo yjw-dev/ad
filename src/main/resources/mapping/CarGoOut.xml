@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.CarGoOutMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.CarGoOut">
+        <result column="id" jdbcType="DECIMAL" property="id" />
+        <result column="d" jdbcType="CHAR" property="d" />
+        <result column="no" jdbcType="CHAR" property="no" />
+        <result column="crr_no" jdbcType="CHAR" property="crrNo" />
+        <result column="do_no" jdbcType="DATE" property="doNo" />
+        <result column="vehicle" jdbcType="DATE" property="vehicle" />
+        <result column="c_customer" jdbcType="DATE" property="customer" />
+        <result column="commodity" jdbcType="CHAR" property="commodity" />
+        <result column="date" jdbcType="TIMESTAMP" property="date2" />
+        <result column="tank" jdbcType="CHAR" property="tank" />
+        <result column="bal_bf" jdbcType="DECIMAL" property="balBf" />
+        <result column="crr_qty" jdbcType="DECIMAL" property="crrQty" />
+        <result column="balance" jdbcType="DECIMAL" property="balance" />
+        <result column="volume" jdbcType="DECIMAL" property="volume" />
+        <result column="density" jdbcType="DECIMAL" property="density" />
+        <result column="remarks" jdbcType="CHAR" property="remarks" />
+        <result column="total_dono" jdbcType="CHAR" property="totalDoNo" />
+    </resultMap>
+    
+    <insert id="insertCarGoOut" parameterType="map">
+        Insert into cargoout (crr_no,
+          do_no,
+          vehicle,
+          no,
+          date,
+          c_customer,
+          commodity,
+          bal_bf,
+          tank,
+          balance,
+          crr_qty )
+        values (#{crrNo},
+          #{doNo},
+          #{vehicle},
+          #{no},
+          #{date2},
+          #{customer},
+          #{commodity},
+          #{balBf},
+          #{tank},
+          #{balance},
+          #{crrQty}
+        )
+    </insert>
+
+
+</mapper>

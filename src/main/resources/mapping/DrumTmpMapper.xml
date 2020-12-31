@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.DrumTmpMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.DrumTmp">
+        <result column="QUAN_DRUM" property="quanDrum" jdbcType="DECIMAL" />
+        <result column="COUN" property="coun" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="queryQuanDrumByCrrNo" parameterType="String" resultMap="BaseResultMap">
+        SELECT SUM(NETWEIGHT)/1000 as QUAN_DRUM,
+          count(*) as COUN
+        from drumtmp
+        WHERE d IS NULL or d = ''
+          and ISIN=1
+          and crr_no =#{crrNo}
+    </select>
+
+    <select id="queryQuanDrumByDoNo" parameterType="String" resultMap="BaseResultMap">
+        SELECT SUM(NETWEIGHT)/1000 as QUAN_DRUM,
+          count(*) as COUN
+        from drumtmp
+        WHERE d IS NULL or d = ''
+          and ISIN=1
+          and do_no =#{doNo}
+    </select>
+
+
+    <insert id="insert" parameterType="com.yshyerp.vehicle.vo.DrumTmpVo" >
+    insert into drumtmp (id, D, no, ddc_no,
+    no1, plan_no, tank, time_r,
+    date1, time1, weight1,
+    date2, time2, weight2,
+    vehicle, vehicle1, t_customer,
+    c_customer, s_customer, billid,
+    crr_no, do_no, commodity, commodity1,
+    drums, packing, netweight,
+    new, color, tare, cover,
+    batch, slop, type, delivered,
+    serial, status, station, remarks,
+    isin, sendno, idno, ori_do,
+    faxno, charge, fee_no, fee,
+    jobno, code, p_bar)
+    values (#{id,jdbcType=INTEGER}, #{d,jdbcType=CHAR}, #{no,jdbcType=CHAR}, #{ddcNo,jdbcType=CHAR},
+    #{no1,jdbcType=CHAR}, #{planNo,jdbcType=CHAR}, #{tank,jdbcType=CHAR}, #{timeR,jdbcType=CHAR},
+    #{date1,jdbcType=TIMESTAMP}, #{time1,jdbcType=CHAR}, #{weight1,jdbcType=DECIMAL},
+    #{date2,jdbcType=TIMESTAMP}, #{time2,jdbcType=CHAR}, #{weight2,jdbcType=DECIMAL},
+    #{vehicle,jdbcType=CHAR}, #{vehicle1,jdbcType=CHAR}, #{tCustomer,jdbcType=CHAR},
+    #{cCustomer,jdbcType=CHAR}, #{sCustomer,jdbcType=CHAR}, #{billid,jdbcType=INTEGER},
+    #{crrNo,jdbcType=CHAR}, #{doNo,jdbcType=CHAR}, #{commodity,jdbcType=CHAR}, #{commodity1,jdbcType=CHAR},
+    #{drums,jdbcType=DECIMAL}, #{packing,jdbcType=DECIMAL}, #{netweight,jdbcType=DECIMAL},
+    #{new,jdbcType=CHAR}, #{color,jdbcType=CHAR}, #{tare,jdbcType=DECIMAL}, #{cover,jdbcType=BIT},
+    #{batch,jdbcType=CHAR}, #{slop,jdbcType=BIT}, #{type,jdbcType=CHAR}, #{delivered,jdbcType=CHAR},
+    #{serial,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{station,jdbcType=CHAR}, #{remarks,jdbcType=CHAR},
+    #{isin,jdbcType=BIT}, #{sendno,jdbcType=CHAR}, #{idno,jdbcType=CHAR}, #{oriDo,jdbcType=BIT},
+    #{faxno,jdbcType=CHAR}, #{charge,jdbcType=BIT}, #{feeNo,jdbcType=CHAR}, #{fee,jdbcType=DECIMAL},
+    #{jobno,jdbcType=CHAR}, #{code,jdbcType=CHAR}, #{pBar,jdbcType=BIT})
+</insert>
+
+</mapper>

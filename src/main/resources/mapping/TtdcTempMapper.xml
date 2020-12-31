@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yshyerp.vehicle.mapper.TtdcTempMapper" >
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.TtdcTemp" >
+        <result column="QUAN_BULK" property="quanBulk" jdbcType="DECIMAL" />
+        <result column="COUN" property="coun" jdbcType="INTEGER" />
+        <result column="cdc_no" property="cdcNo" jdbcType="CHAR" />
+        <result column="ttdc_no" property="ttdcNo" jdbcType="CHAR" />
+        <result column="D" property="d" jdbcType="CHAR" />
+        <result column="auth_no" property="authNo" jdbcType="CHAR" />
+        <result column="plan_no" property="planNo" jdbcType="CHAR" />
+        <result column="vehicle" property="vehicle" jdbcType="CHAR" />
+        <result column="vehicle1" property="vehicle1" jdbcType="CHAR" />
+        <result column="vehi_v" property="vehiV" jdbcType="DECIMAL" />
+        <result column="vehi_w" property="vehiW" jdbcType="DECIMAL" />
+        <result column="vehi_w1" property="vehiW1" jdbcType="DECIMAL" />
+        <result column="vehi_w2" property="vehiW2" jdbcType="DECIMAL" />
+        <result column="vehi_w3" property="vehiW3" jdbcType="DECIMAL" />
+        <result column="c_no" property="boxNo" jdbcType="CHAR" />
+        <result column="time_r" property="timeR" jdbcType="CHAR" />
+        <result column="date0" property="date0" jdbcType="TIMESTAMP" />
+        <result column="time0" property="time0" jdbcType="CHAR" />
+        <result column="date1" property="date1" jdbcType="TIMESTAMP" />
+        <result column="time1" property="time1" jdbcType="CHAR" />
+        <result column="t_customer" property="tankCustomer" jdbcType="CHAR" />
+        <result column="c_customer" property="customer" jdbcType="CHAR" />
+        <result column="billid" property="billid" jdbcType="INTEGER" />
+        <result column="crr_no" property="crrNo" jdbcType="CHAR" />
+        <result column="do_no" property="doNo" jdbcType="CHAR" />
+        <result column="fixno" property="fixNo" jdbcType="CHAR" />
+        <result column="bdo" property="bdo" jdbcType="BIT" />
+        <result column="sendno" property="sendNo" jdbcType="CHAR" />
+        <result column="commodity" property="commodity" jdbcType="CHAR" />
+        <result column="commodity1" property="commodity1" jdbcType="CHAR" />
+        <result column="weight1" property="weight1" jdbcType="DECIMAL" />
+        <result column="weight2" property="weight2" jdbcType="DECIMAL" />
+        <result column="date2" property="date2" jdbcType="TIMESTAMP" />
+        <result column="time2" property="time2" jdbcType="CHAR" />
+        <result column="netweight" property="netweight" jdbcType="DECIMAL" />
+        <result column="density" property="density" jdbcType="DECIMAL" />
+        <result column="volume" property="volume" jdbcType="DECIMAL" />
+        <result column="delivered" property="delivered" jdbcType="CHAR" />
+        <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="sealno" property="sealNo" jdbcType="CHAR" />
+        <result column="tank" property="tank" jdbcType="CHAR" />
+        <result column="station" property="station" jdbcType="CHAR" />
+        <result column="wb" property="wb" jdbcType="CHAR" />
+        <result column="idno" property="idNo" jdbcType="CHAR" />
+        <result column="original" property="original" jdbcType="BIT" />
+        <result column="isin" property="isin" jdbcType="BIT" />
+        <result column="remarks" property="remarks" jdbcType="CHAR" />
+        <result column="send1" property="send1" jdbcType="BIT" />
+        <result column="total_dono" property="totalDoNo" jdbcType="CHAR" />
+        <result column="jobno" property="jobNo" jdbcType="CHAR" />
+        <result column="remarks1" property="remarks1" jdbcType="CHAR" />
+        <result column="c_quan" property="ccQuan" jdbcType="DECIMAL" />
+        <result column="c_station" property="ccStation" jdbcType="CHAR" />
+        <result column="c_gh" property="ccGh" jdbcType="CHAR" />
+        <result column="c_time" property="ccTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="CHAR" />
+        <result column="s_weight" property="ssWeight" jdbcType="DECIMAL" />
+        <result column="s_time" property="ssTime" jdbcType="TIMESTAMP" />
+        <result column="e_weight" property="eeWeight" jdbcType="DECIMAL" />
+        <result column="e_time" property="eeTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="queryQuanBulkByCrrNo" parameterType="String" resultMap="BaseResultMap">
+        SELECT SUM(QUANTITY) as QUAN_BULK,
+            count(*) as COUN
+        FROM ttdctemp
+        WHERE (d IS NULL or d = '')
+          and ISIN =1
+          and crr_no =#{crrNo}
+    </select>
+
+    <select id="queryQuanBulkByDoNo" parameterType="String" resultMap="BaseResultMap">
+        SELECT SUM(QUANTITY) as QUAN_BULK,
+            count(*) as COUN
+        FROM ttdctemp
+        WHERE (d IS NULL or d = '')
+          and ISIN =1
+          and do_no =#{doNo}
+    </select>
+
+    <select id="queryTtdcTempByDoNo" parameterType="String" resultMap="BaseResultMap">
+        select jobno,
+          do_no
+        from ttdctemp
+        where (d IS NULL or d = '')
+          and do_no=#{doNo}
+    </select>
+
+    <select id="queryQuanInByTank" parameterType="String" resultMap="BaseResultMap">
+        select SUM(QUANTITY) as QUAN_BULK,
+          count(*) as COUN
+        from ttdctemp
+        where (d IS NULL or d = '')
+          and ISIN =1
+          and tank=#{tank}
+    </select>
+
+    <select id="queryQuanInByTank2" parameterType="map" resultMap="BaseResultMap">
+        select SUM(QUANTITY) as QUAN_BULK,
+          count(*) as COUN
+        from ttdctemp
+        where (d IS NULL or d = '')
+          and ISIN =1
+          and vehicle <![CDATA[<>]]> #{vehicle}
+          and tank=#{tank}
+    </select>
+
+    <select id="queryStation" parameterType="map" resultMap="BaseResultMap">
+        select t.time1,
+            t.station
+        from ttdctemp t
+        where (d IS NULL or d = '')
+            and (t.station = #{station1}
+            or t.station = #{station2}
+            or t.station = #{station3})
+            and t.isin = 1
+        order by t.station,
+            t.time1
+    </select>
+
+    <insert id="saveTtdcTemp" parameterType="com.yshyerp.vehicle.vo.WarehousingVO">
+      Insert into ttdctemp (jobno,
+        vehicle,
+        vehicle1,
+        vehi_w,
+        vehi_v,
+        vehi_w1,
+        vehi_w2,
+        vehi_w3,
+        c_no,
+        tank,
+        t_customer,
+        c_customer,
+        crr_no,
+        do_no,
+        bdo,
+        commodity,
+        commodity1,
+        time_r,
+        date0,
+        time0,
+        weight1,
+        delivered,
+        quantity,
+        sealno,
+        station,
+        wb,
+        idno,
+        original,
+        faxno,
+        remarks,
+        isin,
+        plan_no,
+        billid)
+      values (#{jobNo},
+        #{txtVehicle},
+        #{txtVehicle1},
+        #{txtVehiW},
+        #{vehiV},
+        #{vehiW1},
+        #{txtVehiW2},
+        #{txtVehiW3},
+        #{boxNo},
+        #{tank},
+        #{tankCustomer},
+        #{customer},
+        #{crrNo},
+        #{doNo},
+        #{bdo},
+        #{commodity},
+        #{comm1},
+        #{timeR},
+        #{date0},
+        #{time0},
+        #{weight1},
+        #{delivered},
+        #{quantity},
+        #{sealNo},
+        #{station},
+        #{wb},
+        #{idno},
+        #{original},
+        #{faxno},
+        #{remarks},
+        1,
+        #{planNo},
+        #{billid})
+    </insert>
+
+    <select id="queryTtdcTempDetail" parameterType="String" resultMap="BaseResultMap">
+      select *
+      from ttdctemp
+      where (d IS NULL or d = '')
+    </select>
+
+</mapper>

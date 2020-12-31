@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.TankCMapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.TankC">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="d" jdbcType="CHAR" property="d" />
+        <result column="tank" jdbcType="CHAR" property="tank" />
+        <result column="comm1" jdbcType="CHAR" property="comm1" />
+    </resultMap>
+
+    <!--根据罐号查询打印货品名称-->
+    <select id="queryTankCListByTank" parameterType="String" resultMap="BaseResultMap">
+      SELECT *
+      FROM tank_c
+      where (d IS NULL or d = '')
+        and tank = #{tank}
+    </select>
+
+</mapper>
