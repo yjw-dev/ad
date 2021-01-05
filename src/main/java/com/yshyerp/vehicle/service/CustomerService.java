@@ -17,6 +17,13 @@ public interface CustomerService {
     public List<Customer> getCustomerByCustomerName(String customer);
 
     /**
+     * 查询客户名称
+     * @param
+     * @return
+     */
+    public List<Customer> customerList();
+
+    /**
      * 校验客户是否存在
      * @param customer 客户简称
      * @return

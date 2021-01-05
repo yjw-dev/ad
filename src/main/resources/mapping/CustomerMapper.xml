@@ -39,6 +39,16 @@
         and customer=#{customer}
     </select>
 
+    <select id="customerList" parameterType="com.yshyerp.vehicle.entity.Customer" resultMap="BaseResultMap">
+        SELECT customer
+        FROM customer
+        where (d IS NULL or d = '')
+
+    </select>
+
+
+
+
     <select id="getTranE" parameterType="String" resultMap="BaseResultMap2">
         select *
         from tran_e

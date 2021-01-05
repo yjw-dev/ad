@@ -39,7 +39,7 @@
         <table tableName="tank" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>-->
-        <table tableName="e_drumtmp" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="s_customer" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
 

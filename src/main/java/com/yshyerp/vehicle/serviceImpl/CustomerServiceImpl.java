@@ -29,6 +29,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     /**
+     * 查询客户名称
+     * @return
+     */
+    @Override
+    public List<Customer> customerList() {
+        List<Customer> customerList=customerMapper.customerList();
+        return customerList;
+    }
+
+    /**
      * 校验客户是否存在
      * @param customer 客户简称
      * @return

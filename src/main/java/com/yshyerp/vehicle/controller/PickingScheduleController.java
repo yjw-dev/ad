@@ -163,6 +163,7 @@ public class PickingScheduleController {
         log.info("--------------------pickingSchedule/updpickingschedule START--------------------");
         TankListVO tankListVO = request.getData();
         int updFlag = pickingScheduleService.updPickingSchedule(tankListVO);
+        System.out.println(pickingScheduleService.updPickingSchedule(request.getData()));
         if(updFlag>0) {
             return Response.success(ConstantUtil.SUCCESS_MESSAGE, true, ConstantUtil.SUCCESS_CODE, null);
         }

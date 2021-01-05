@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.Djob1Mapper">
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Djob1">
+
+        <result column="no" jdbcType="CHAR" property="no"/>
+        <result column="d" jdbcType="CHAR" property="d"/>
+        <result column="e_name" jdbcType="CHAR" property="eName"/>
+        <result column="c_name" jdbcType="CHAR" property="cName"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="to" jdbcType="CHAR" property="to"/>
+        <result column="crr_no" jdbcType="CHAR" property="crrNo"/>
+        <result column="applied_no" jdbcType="CHAR" property="appliedNo"/>
+        <result column="plan_no" jdbcType="CHAR" property="planNo"/>
+        <result column="customer" jdbcType="CHAR" property="customer"/>
+        <result column="s_customer" jdbcType="CHAR" property="sCustomer"/>
+        <result column="date_com" jdbcType="TIMESTAMP" property="dateCom"/>
+        <result column="date_exe" jdbcType="TIMESTAMP" property="dateExe"/>
+        <result column="vehicle" jdbcType="CHAR" property="vehicle"/>
+        <result column="commodity" jdbcType="CHAR" property="commodity"/>
+        <result column="tank" jdbcType="CHAR" property="tank"/>
+        <result column="kgs" jdbcType="DECIMAL" property="kgs"/>
+        <result column="new" jdbcType="CHAR" property="n"/>
+        <result column="c_new" jdbcType="CHAR" property="cNew"/>
+        <result column="drums" jdbcType="DECIMAL" property="drums"/>
+        <result column="total" jdbcType="DECIMAL" property="total"/>
+        <result column="color" jdbcType="CHAR" property="color"/>
+        <result column="charge" jdbcType="BIT" property="charge"/>
+        <result column="tare" jdbcType="DECIMAL" property="tare"/>
+        <result column="batch" jdbcType="CHAR" property="batch"/>
+        <result column="slop" jdbcType="BIT" property="slop"/>
+        <result column="type" jdbcType="CHAR" property="type"/>
+        <result column="drum_req" jdbcType="DECIMAL" property="drumReq"/>
+        <result column="code1" jdbcType="CHAR" property="code1"/>
+        <result column="code2" jdbcType="CHAR" property="code2"/>
+        <result column="code3" jdbcType="CHAR" property="code3"/>
+        <result column="p_bar" jdbcType="DECIMAL" property="pBar"/>
+        <result column="label" jdbcType="CHAR" property="label"/>
+        <result column="requ_2" jdbcType="CHAR" property="requ2"/>
+        <result column="requ_3" jdbcType="CHAR" property="requ3"/>
+        <result column="requ_4" jdbcType="CHAR" property="requ4"/>
+        <result column="requ_5" jdbcType="CHAR" property="requ5"/>
+        <result column="requ_6" jdbcType="CHAR" property="requ6"/>
+        <result column="remark" jdbcType="CHAR" property="remark"/>
+        <result column="drum_fill" jdbcType="BIT" property="drumFill"/>
+        <result column="clean" jdbcType="CHAR" property="clean"/>
+        <result column="affrim" jdbcType="BIT" property="affrim"/>
+        <result column="balance" jdbcType="DECIMAL" property="balance"/>
+        <result column="fee_cust" jdbcType="CHAR" property="feeCust"/>
+        <result column="flag" jdbcType="DECIMAL" property="flag"/>
+    </resultMap>
+
+
+
+    <select id="Bycustomer" parameterType="com.yshyerp.vehicle.vo.DjobVo" resultType="com.yshyerp.vehicle.entity.Djob1">
+
+         SELECT  customer,s_customer,new,color,tare,drums FROM djob
+         WHERE d IS NULL or d = '' and customer=#{customer} and status='DFC' and flag=1
+
+    </select>
+
+
+</mapper>

@@ -8,12 +8,19 @@ import java.util.List;
 public interface VehiPlanService {
 
     //查询全部
-    List<VehiPlan> list();
+    List<VehiPlan1> list();
 
    //根据计划单号planNo查询
-    public VehiPlan queryplanNoByDoNo(String planNo);
+   VehiPlan1 queryplanNoByDoNo(String planNo);
 
     //新增来桶计划
     int insert(VehiPlan1 record);
 
+    int insertSelective(VehiPlan1 record);
+
+    //修改
+    int updVehiPlan1(VehiPlan1 record);
+
+    //逻辑删除
+    int updVehiplanId(String planNo);
 }

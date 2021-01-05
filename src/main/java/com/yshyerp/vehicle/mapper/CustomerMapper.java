@@ -22,6 +22,14 @@ public interface CustomerMapper {
      */
     public List<Customer> getCustomerByCustomerName(String customer);
 
+
+    /**
+     * 根据客户名称查询客户信息
+     * @return
+     */
+    public List<Customer> customerList();
+
+
     /**
      * 查询运输公司
      * @param company 运输公司

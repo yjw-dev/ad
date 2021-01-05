@@ -15,14 +15,14 @@ public class VehiPlanServiceImpl implements VehiPlanService {
 
 
     @Override
-    public List<VehiPlan> list() {
-        List<VehiPlan> v=vehiPlanMapper.list();
+    public List<VehiPlan1> list() {
+        List<VehiPlan1> v=vehiPlanMapper.list();
         return v;
     }
 
     @Override
-    public VehiPlan queryplanNoByDoNo(String planNo) {
-        VehiPlan vehiPlan=vehiPlanMapper.queryplanNoByDoNo(planNo);
+    public VehiPlan1 queryplanNoByDoNo(String planNo) {
+        VehiPlan1 vehiPlan=vehiPlanMapper.queryplanNoByDoNo(planNo);
         if (vehiPlan!=null){
             return vehiPlan;
         }
@@ -34,6 +34,21 @@ public class VehiPlanServiceImpl implements VehiPlanService {
     public int insert(VehiPlan1 record) {
 
 
-        return vehiPlanMapper.insert(record);
+        return 0;
+    }
+
+    @Override
+    public int insertSelective(VehiPlan1 record) {
+        return vehiPlanMapper.insertSelective(record);
+    }
+
+    @Override
+    public int updVehiPlan1(VehiPlan1 record) {
+        return  vehiPlanMapper.updVehiPlan1(record);
+    }
+
+    @Override
+    public int updVehiplanId(String planNo) {
+        return vehiPlanMapper.updVehiplanId(planNo);
     }
 }
