@@ -62,4 +62,9 @@
     </select>
 
 
+    <!--<select id="getdrumlock" parameterType="String" resultMap="BaseResultMap3">-->
+
+   <!--SELECT  drumlock FROM customer where   customer = #{customer}-->
+    <!--</select>-->
+
 </mapper>

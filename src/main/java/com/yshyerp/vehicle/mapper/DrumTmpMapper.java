@@ -27,4 +27,7 @@ public interface DrumTmpMapper {
     public DrumTmp queryQuanDrumByDoNo(String doNo);
 
     int insert(DrumTmpVo record);
+
+
+
 }

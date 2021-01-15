@@ -13,7 +13,7 @@
         <result column="applied_no" jdbcType="CHAR" property="appliedNo"/>
         <result column="plan_no" jdbcType="CHAR" property="planNo"/>
         <result column="customer" jdbcType="CHAR" property="customer"/>
-        <result column="s_customer" jdbcType="CHAR" property="sCustomer"/>
+        <result column="s_customer" jdbcType="CHAR" property="scustomer"/>
         <result column="date_com" jdbcType="TIMESTAMP" property="dateCom"/>
         <result column="date_exe" jdbcType="TIMESTAMP" property="dateExe"/>
         <result column="vehicle" jdbcType="CHAR" property="vehicle"/>

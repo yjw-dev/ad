@@ -12,6 +12,7 @@ public class Edrums implements Serializable {
 
     private String edmno;
 
+    private Integer drums;
     private Date date;
 
     private Date date1;

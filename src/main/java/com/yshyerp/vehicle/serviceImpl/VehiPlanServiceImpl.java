@@ -32,23 +32,25 @@ public class VehiPlanServiceImpl implements VehiPlanService {
 
     @Override
     public int insert(VehiPlan1 record) {
-
-
-        return 0;
+        int a=vehiPlanMapper.insert(record);
+        return a;
     }
 
     @Override
     public int insertSelective(VehiPlan1 record) {
-        return vehiPlanMapper.insertSelective(record);
+        int a=vehiPlanMapper.insertSelective(record);
+        return a;
     }
 
     @Override
     public int updVehiPlan1(VehiPlan1 record) {
-        return  vehiPlanMapper.updVehiPlan1(record);
+        int a=vehiPlanMapper.updVehiPlan1(record);
+        return  a;
     }
 
     @Override
     public int updVehiplanId(String planNo) {
-        return vehiPlanMapper.updVehiplanId(planNo);
+        int a=vehiPlanMapper.updVehiplanId(planNo);;
+        return a;
     }
 }

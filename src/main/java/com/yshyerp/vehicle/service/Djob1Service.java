@@ -3,6 +3,7 @@ package com.yshyerp.vehicle.service;
 import com.yshyerp.vehicle.entity.Djob;
 import com.yshyerp.vehicle.entity.Djob1;
 import com.yshyerp.vehicle.vo.DjobVo;
+import com.yshyerp.vehicle.vo.DjobVo1;
 
 import java.util.List;
 

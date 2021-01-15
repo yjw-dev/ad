@@ -9,8 +9,11 @@ import com.yshyerp.vehicle.service.DrumService;
 import com.yshyerp.vehicle.service.TankService;
 import com.yshyerp.vehicle.service.TrustService;
 import com.yshyerp.vehicle.vo.TrustVO;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -21,8 +24,11 @@ import java.util.Map;
 /**
  * 委托书业务类
  */
+@Log4j2
 @Service
 public class TrustServiceImpl implements TrustService {
+@Autowired
+MongoTemplate mongoTemplate;
 
     @Autowired
     DrumService drumService;
@@ -45,6 +51,14 @@ public class TrustServiceImpl implements TrustService {
         Map requestMap = new HashMap<String, Object>();
         requestMap.put("cCustomer", cCustomer);
         requestMap.put("commodity", commodity);
+
+
+    String npe=null;
+    Assert.isNull(npe,"不能为空");
+    npe.length();
+    log.info("出现异常错误");
+
+
         //查询委托书列表
         List<Trust> trustList = trustMapper.queryTrustByCustomerAndCommodity(requestMap);
         //将查询结果转换成VO

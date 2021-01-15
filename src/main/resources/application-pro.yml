@@ -11,15 +11,20 @@ spring:
     #username: etss_inv
     #password: 66123
     #中远
-
-    url: jdbc:sqlserver://10.208.2.7;databaseName=invdbf
-    username: yiliu01
-    password: 87654321
+    url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
+    username: sa
+    password: 1qaz@wsx
+#    url: jdbc:sqlserver://10.208.2.7;databaseName=invdbf
+#    username: yiliu01
+#    password: 87654321
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   data:
     mongodb:
       database: yshyerp
-      host:
+      host: 10.208.2.9
+      port: 27017
 
 
 #    url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
@@ -49,5 +54,5 @@ pagehelper:
 
 
 mongoDb:
-  crcExceptionCollection: crcExceptionCollection
-  crcServiceCollection: crcServiceCollection
+  crcExceptionCollection: vehicleCollection
+  crcServiceCollection: vehicleExceprion

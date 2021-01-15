@@ -1,6 +1,7 @@
 package com.yshyerp.vehicle.log;
 
 import lombok.extern.log4j.Log4j2;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -8,6 +9,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author ：tao
@@ -46,10 +48,15 @@ public class ServiceLog {
      * 异常日志插入
      * @param e generator exception这里不做过滤，拦截所有异常
      */
-    public  void exception(Object e)
+    public  void exception(Exception e)
     {
         threadPoolTaskExecutor.execute(
-                ()-> mongoTemplate.insert(e,crcExceptionCollection)
+                ()-> {
+                    Document document=new Document();
+                    document.put("Date",new Date());
+                    document.put("Message",e.getMessage());
+                    mongoTemplate.insert(document,"crcExceptionCollection");
+                }
         );
         log.info("插入异常数据");
     }
@@ -61,7 +68,13 @@ public class ServiceLog {
     public  void service(Object object)
     {
         threadPoolTaskExecutor.execute(
-                ()-> mongoTemplate.insert(object,crcServiceCollection)
+                ()->
+                {
+                    Document document=new Document();
+                    document.put("Date",new Date());
+                    document.put("Message",object.toString());
+                    mongoTemplate.insert(document,crcServiceCollection);
+                }
         );
     log.info("插入业务");
     }

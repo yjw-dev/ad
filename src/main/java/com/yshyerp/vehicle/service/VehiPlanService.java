@@ -13,9 +13,10 @@ public interface VehiPlanService {
    //根据计划单号planNo查询
    VehiPlan1 queryplanNoByDoNo(String planNo);
 
-    //新增来桶计划
+    //新增 桶装出货计划计划
     int insert(VehiPlan1 record);
 
+    //新增来桶计划
     int insertSelective(VehiPlan1 record);
 
     //修改

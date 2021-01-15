@@ -13,8 +13,8 @@ public class SCustomerServiceImpl implements SCustomerService {
     @Autowired
     SCustomerMapper sCustomerMapper;
     @Override
-    public List<SCustomer> alist() {
-        List<SCustomer> list=sCustomerMapper.alist();
+    public List<SCustomer> alist(SCustomer customer) {
+        List<SCustomer> list=sCustomerMapper.alist(customer);
         return list;
     }
 }

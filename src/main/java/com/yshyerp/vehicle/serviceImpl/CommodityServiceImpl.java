@@ -1,6 +1,5 @@
 package com.yshyerp.vehicle.serviceImpl;
 
-import com.yshyerp.vehicle.commons.ConstantUtil;
 import com.yshyerp.vehicle.commons.ToolUtil;
 import com.yshyerp.vehicle.entity.*;
 import com.yshyerp.vehicle.mapper.*;

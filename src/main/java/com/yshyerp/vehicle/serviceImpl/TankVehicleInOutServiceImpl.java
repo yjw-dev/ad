@@ -315,9 +315,6 @@ public class TankVehicleInOutServiceImpl implements TankVehicleInOutService {
 //
 //            //}
 //        }
-
-
-
         return true;
     }
 

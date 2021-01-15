@@ -1,35 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yshyerp.vehicle.mapper.EdrumsMapper">
-  <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Edrums">
-    <result column="date" jdbcType="TIMESTAMP" property="date" />
-    <result column="date1" jdbcType="TIMESTAMP" property="date1" />
-    <result column="customer" jdbcType="CHAR" property="customer" />
-    <result column="s_customer" jdbcType="CHAR" property="scustomer" />
-    <result column="edmno" jdbcType="CHAR" property="edmno" />
-    <result column="cover" jdbcType="BIT" property="cover" />
-    <result column="color" jdbcType="CHAR" property="color" />
-    <result column="tare" jdbcType="DECIMAL" property="tare" />
-    <result column="new" jdbcType="CHAR" property="n" />
-    <result column="balance" jdbcType="DECIMAL" property="balance" />
-    <result column="charge" jdbcType="BIT" property="charge" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.yshyerp.vehicle.entity.Edrums">
+        <result column="date" jdbcType="TIMESTAMP" property="date"/>
+        <result column="date1" jdbcType="TIMESTAMP" property="date1"/>
+        <result column="customer" jdbcType="CHAR" property="customer"/>
+        <result column="s_customer" jdbcType="CHAR" property="scustomer"/>
+        <result column="edmno" jdbcType="CHAR" property="edmno"/>
+        <result column="cover" jdbcType="BIT" property="cover"/>
+        <result column="color" jdbcType="CHAR" property="color"/>
+        <result column="tare" jdbcType="DECIMAL" property="tare"/>
+        <result column="new" jdbcType="CHAR" property="n"/>
+        <result column="balance" jdbcType="DECIMAL" property="balance"/>
+        <result column="charge" jdbcType="BIT" property="charge"/>
+    </resultMap>
+
+    <select id="mapedurms" parameterType="map" resultMap="BaseResultMap">
+
+  SELECT *  from e_drums where
+   and customer=#{customer}
+    and s_customer=#{scustomer}
+     and color=#{color}
+     and cover=#{cover}
+      and tare=#{tare}
+      and new=#{n}
+     and charge=#{charge}
 
 
-
-  <select id="slist"   parameterType="com.yshyerp.vehicle.entity.Edrums"  resultMap="BaseResultMap">
-
-  SELECT *  from e_drums where  customer=#{customer}  and balance>0 order by customer
+  order by customer
 
    </select>
 
 
 
-  <select id="Bycustomer" parameterType="com.yshyerp.vehicle.vo.DjobVo" resultType="com.yshyerp.vehicle.entity.Edrums">
+
+
+
+
+
+
+    <select id="slist" parameterType="com.yshyerp.vehicle.entity.Edrums" resultMap="BaseResultMap">
+
+  SELECT *  from e_drums where    balance>0 order by customer
+
+   </select>
+
+
+
+
+    <select id="Bycustomer" parameterType="com.yshyerp.vehicle.vo.DjobVo"
+            resultType="com.yshyerp.vehicle.entity.Edrums">
 
            SELECT customer,s_customer,new,color,tare,balance from e_drums
            where customer=#{customer} and balance>0  order by customer
 
 
     </select>
+
+    <insert id="insEdrums" parameterType="com.yshyerp.vehicle.entity.Edrums">
+    insert into e_drums (customer,s_customer,date,date1 ,new
+    ,color,tare ,cover,balance,charge)
+    values (#{customer,jdbcType=CHAR}, #{scustomer,jdbcType=CHAR},
+      #{date,jdbcType=TIMESTAMP}, #{date1,jdbcType=TIMESTAMP}, #{n,jdbcType=CHAR}, #{color,jdbcType=CHAR},
+      #{tare,jdbcType=DECIMAL}, #{cover,jdbcType=BIT}, #{balance,jdbcType=DECIMAL}, #{charge,jdbcType=BIT})
+  </insert>
+
+
+    <update id="updedrums" parameterType="com.yshyerp.vehicle.entity.Edrums">
+        update e_drums set
+            date=#{date},
+            date1=#{date1},
+            balance=#{balance}
+        where
+               customer=#{customer}
+              and  color=#{color}
+              and  new=#{n}
+              and  tare=#{tare}
+              and  cover=#{cover}
+              and  charge=#{charge}
+              and  s_customer=#{scustomer}
+    </update>
+
+
 </mapper>

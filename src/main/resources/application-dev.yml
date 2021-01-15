@@ -12,10 +12,14 @@ spring:
     #password: 66123
 
     #中远
+#
+#      url: jdbc:sqlserver://10.208.2.7;databaseName=invdbf
+#      username: yiliu01
+#      password: 87654321
 
-      url: jdbc:sqlserver://10.208.2.7;databaseName=invdbf
-      username: yiliu01
-      password: 87654321
+      url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
+      username: sa
+      password: 1qaz@wsx
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   data:
     mongodb:
@@ -23,10 +27,7 @@ spring:
       host: 192.168.1.241
       port: 27017
 
-#    url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
-#    username: sa
-#    password: 1qaz@wsx
-#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
 # mybatis绑定
 mybatis:
   type-aliases-package: com.yshyerp.vehicle.entity

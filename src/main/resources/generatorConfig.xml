@@ -15,12 +15,21 @@
             <property name="suppressDate" value="true"/>
         </commentGenerator>
 
-        <!--jdbc:sqlserver://10.208.2.7;databaseName=invdbf-->
+        <!--jdbc:sqlserver://10.208.2.7;databaseName=invdbf
+          url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
+          username: sa
+          password: 1qaz@wsx
+        -->
+        <!--connectionURL="jdbc:sqlserver://192.168.1.252;databaseName=invdbf"-->
+        <!--userId="sa"-->
+        <!--password="1qaz@wsx"-->
         <jdbcConnection
                 driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-                connectionURL="jdbc:sqlserver://192.168.1.252;databaseName=invdbf"
-                userId="sa"
-                password="1qaz@wsx"/>
+                connectionURL="jdbc:sqlserver://10.208.2.7;databaseName=invdbf"
+                userId="yiliu01"
+                password="87654321"
+
+        />
         <javaModelGenerator targetPackage="com.yshyerp.vehicle.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimString" value="true"/>
@@ -39,7 +48,7 @@
         <table tableName="tank" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>-->
-        <table tableName="s_customer" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="slop" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
 

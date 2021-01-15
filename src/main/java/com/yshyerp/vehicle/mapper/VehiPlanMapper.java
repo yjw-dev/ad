@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface VehiPlanMapper {
     /**
-     * 新增 来桶计划
+     * 新增 桶装出货计划计划
      * @mbggenerated
      */
     int insert(VehiPlan1 record);
@@ -23,7 +23,11 @@ public interface VehiPlanMapper {
      */
     public int updVehiPlan1(VehiPlan1 record);
 
+    //修改
+    public int update(VehiPlan1 record);
 
+
+    //新增
     int insertSelective(VehiPlan1 record);
 
     //查询VehiPlan全部信息

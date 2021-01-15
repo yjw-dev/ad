@@ -25,6 +25,7 @@
     </select>
 
 
+
     <insert id="insert" parameterType="com.yshyerp.vehicle.vo.DrumTmpVo" >
     insert into drumtmp (id, D, no, ddc_no,
     no1, plan_no, tank, time_r,

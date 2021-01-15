@@ -8,5 +8,5 @@ public interface SCustomerService {
 
 
     //查询小客户
-    List<SCustomer> alist();
+    List<SCustomer> alist(SCustomer customer);
 }

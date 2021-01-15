@@ -30,6 +30,8 @@ public interface CustomerMapper {
     public List<Customer> customerList();
 
 
+
+
     /**
      * 查询运输公司
      * @param company 运输公司
@@ -43,4 +45,14 @@ public interface CustomerMapper {
      * @return
      */
     public List<DriverBlack> getDriverBlack(String idNo);
+
+//
+//    /**
+//     * 根据客户查询    drumlock
+//     * @param
+//     * @return
+//     */
+//
+//    public Customer getdrumlock(String customer);
+
 }
