@@ -3,6 +3,7 @@ package com.yshyerp.vehicle.service;
 import com.yshyerp.vehicle.entity.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 客户业务类
@@ -22,6 +23,9 @@ public interface CustomerService {
      * @return
      */
     public List<Customer> customerList();
+
+
+    public List<Map<String,Object>> customerget(String customer);
 
     /**
      * 校验客户是否存在

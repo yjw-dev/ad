@@ -53,6 +53,7 @@
         <result column="p_bar" jdbcType="BIT" property="pBar"/>
         <result column="state" jdbcType="CHAR" property="state"/>
         <result column="jobno" jdbcType="CHAR" property="jobno"/>
+        <result column="typea" jdbcType="CHAR" property="typea"/>
     </resultMap>
     <insert id="insert" parameterType="com.yshyerp.vehicle.entity.VehiPlan1">
         insert into vehi_plan
@@ -419,7 +420,7 @@
                 netweight,
             </if>
             <if test="cnew != null">
-                cnew,
+                new,
             </if>
             <if test="color != null">
                 color,
@@ -571,7 +572,7 @@
                 #{netweight,jdbcType=DECIMAL},
             </if>
             <if test="cnew !=null">
-                new=#{cnew},
+               #{cnew,jdbcType=CHAR},
             </if>
             <if test="color != null">
                 #{color,jdbcType=CHAR},
@@ -795,11 +796,66 @@
         where  plan_no = #{planNo}
     </update>
 
-    <select id="list" parameterType="com.yshyerp.vehicle.entity.VehiPlan1" resultMap="BaseResultMap">
+    <select id="list"   parameterType="map" resultMap="BaseResultMap">
     select
    *
-    from vehi_plan where (d IS NULL or d = '')
+    from vehi_plan where 0=0
+        <if test="typea == 1">
+            and ISNULL(jobno,' ')=' '
+        </if>
+        <if test="typea == 2">
+           and ISNULL(jobno,' ') !=' '
+        </if>
+        <if test="planType != null and planType != ''">
+           and  plan_type=#{planType}
+        </if>
+        and   (d IS NULL or d = '')
+          order by id
   </select>
+
+
+    <select id="thjhcx" parameterType="com.yshyerp.vehicle.entity.VehiPlan1" resultMap="BaseResultMap">
+
+        SELECT *  from vehi_plan where plan_type='DRA' and
+        DateDiff(dd,d_date,getdate())<![CDATA[<]]>v_date and ISNULL(d,' ')=' '
+        and LEN(jobno)<![CDATA[<>]]>6 and plan_no not in (select plan_no from e_drumtmp where
+        0=0 and
+        ISNULL(d,' ')=' ')
+        <if test="planNo != null and planNo != ''">
+            and   plan_no=#{planNo}
+        </if>
+    </select>
+
+
+
+    <select id="thjhcxddc" parameterType="com.yshyerp.vehicle.entity.VehiPlan1" resultMap="BaseResultMap">
+
+        SELECT *  from vehi_plan where plan_type='DDC' and
+        DateDiff(dd,d_date,getdate())<![CDATA[<]]>v_date and ISNULL(d,' ')=' '
+        and LEN(jobno)<![CDATA[<>]]>6 and plan_no not in (select plan_no from drumtmp where
+        0=0 and
+        ISNULL(d,' ')=' ')
+        <if test="planNo != null and planNo != ''">
+            and   plan_no=#{planNo}
+        </if>
+    </select>
+
+
+
+
+    <select id="thjh" parameterType="com.yshyerp.vehicle.entity.VehiPlan1" resultMap="BaseResultMap">
+       SELECT *  from vehi_plan where 0=0
+
+        <if test="planNo != null and planNo != ''">
+         and   plan_no=#{planNo}
+        </if>
+        and plan_type='DRA' and ISNULL(d,' ')=' '  order by id
+
+
+    </select>
+
+
+
 
 
     <select id="queryplanNoByDoNo" parameterType="String" resultMap="BaseResultMap">
@@ -813,5 +869,17 @@
         where
            plan_no = #{planNo}
     </update>
+
+    <update id="updplanNo" parameterType="com.yshyerp.vehicle.entity.VehiPlan1">
+    update vehi_plan set jobno='' where plan_no=#{planNo} and plan_type='DRA' and  ISNULL(d,' ')=' '
+</update>
+
+    <update id="updjobno" parameterType="map">
+    update vehi_plan set jobno=#{jobno} where plan_no=#{planNo} and plan_type='DRA' and  ISNULL(d,' ')=' '
+</update>
+
+
+
+
 
 </mapper>

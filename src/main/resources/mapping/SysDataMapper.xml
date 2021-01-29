@@ -50,4 +50,9 @@
       set job_no=#{jobNo}
     </update>
 
+    <update id="updSysDataIdToDraNo" parameterType="String" >
+      update sysdata
+      set dra_no=#{draNo}
+    </update>
+
 </mapper>

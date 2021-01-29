@@ -46,6 +46,20 @@
 
     </select>
 
+    <!--LTRIM(RTRIM(customer))-->
+    <select id="customerget" parameterType="com.yshyerp.vehicle.entity.Customer" resultType="java.util.Map">
+        SELECT LTRIM(RTRIM(customer)) [key], LTRIM(RTRIM(customer))  label
+        FROM customer
+        where 0=0
+        <if test="customer!=null and customer!=''">
+            and customer=#{customer}
+        </if>
+        and (d IS NULL or d = '')
+        order by order1 desc,customer
+
+
+
+    </select>
 
 
 
@@ -62,9 +76,9 @@
     </select>
 
 
-    <!--<select id="getdrumlock" parameterType="String" resultMap="BaseResultMap3">-->
+    <select id="getdrumlock" parameterType="String" resultMap="BaseResultMap3">
 
-   <!--SELECT  drumlock FROM customer where   customer = #{customer}-->
-    <!--</select>-->
+   SELECT  drumlock FROM customer where   customer = #{customer}
+    </select>
 
 </mapper>

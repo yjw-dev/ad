@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.Ddc1Mapper">
+
+    <resultMap type="com.yshyerp.vehicle.entity.Ddc1" id="DdcMap">
+        <result property="ddcNo" column="ddc_no" jdbcType="VARCHAR"/>
+        <result property="d" column="d" jdbcType="VARCHAR"/>
+        <result property="authNo" column="auth_no" jdbcType="VARCHAR"/>
+        <result property="planNo" column="plan_no" jdbcType="VARCHAR"/>
+        <result property="tank" column="tank" jdbcType="VARCHAR"/>
+        <result property="timeR" column="time_r" jdbcType="VARCHAR"/>
+        <result property="date1" column="date1" jdbcType="TIMESTAMP"/>
+        <result property="time1" column="time1" jdbcType="VARCHAR"/>
+        <result property="weight1" column="weight1" jdbcType="NUMERIC"/>
+        <result property="date2" column="date2" jdbcType="TIMESTAMP"/>
+        <result property="time2" column="time2" jdbcType="VARCHAR"/>
+        <result property="weight2" column="weight2" jdbcType="NUMERIC"/>
+        <result property="vehicle" column="vehicle" jdbcType="VARCHAR"/>
+        <result property="vehicle1" column="vehicle1" jdbcType="VARCHAR"/>
+        <result property="tCustomer" column="t_customer" jdbcType="VARCHAR"/>
+        <result property="cCustomer" column="c_customer" jdbcType="VARCHAR"/>
+        <result property="sCustomer" column="s_customer" jdbcType="VARCHAR"/>
+        <result property="billid" column="billid" jdbcType="INTEGER"/>
+        <result property="crrNo" column="crr_no" jdbcType="VARCHAR"/>
+        <result property="doNo" column="do_no" jdbcType="VARCHAR"/>
+        <result property="sendno" column="sendno" jdbcType="VARCHAR"/>
+        <result property="commodity" column="commodity" jdbcType="VARCHAR"/>
+        <result property="commodity1" column="commodity1" jdbcType="VARCHAR"/>
+        <result property="new" column="new" jdbcType="VARCHAR"/>
+        <result property="color" column="color" jdbcType="VARCHAR"/>
+        <result property="tare" column="tare" jdbcType="NUMERIC"/>
+        <result property="weightTare" column="weight_tare" jdbcType="NUMERIC"/>
+        <result property="cover" column="cover" jdbcType="OTHER"/>
+        <result property="batch" column="batch" jdbcType="VARCHAR"/>
+        <result property="drums" column="drums" jdbcType="NUMERIC"/>
+        <result property="packing" column="packing" jdbcType="NUMERIC"/>
+        <result property="netweight" column="netweight" jdbcType="NUMERIC"/>
+        <result property="slop" column="slop" jdbcType="OTHER"/>
+        <result property="delivered" column="delivered" jdbcType="VARCHAR"/>
+        <result property="serial" column="serial" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="idno" column="idno" jdbcType="VARCHAR"/>
+        <result property="charge" column="charge" jdbcType="OTHER"/>
+        <result property="feeNo" column="fee_no" jdbcType="VARCHAR"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+        <result property="original" column="original" jdbcType="OTHER"/>
+        <result property="faxno" column="faxno" jdbcType="VARCHAR"/>
+        <result property="oper" column="oper" jdbcType="VARCHAR"/>
+        <result property="totalDono" column="total_dono" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="fee" column="fee" jdbcType="NUMERIC"/>
+        <result property="jobno" column="jobno" jdbcType="VARCHAR"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryDdcByDoNo" resultMap="DdcMap">
+        select
+          *
+        from ddc
+        where  do_no= #{dono}
+    </select>
+
+
+
+    <!--&lt;!&ndash;新增所有列&ndash;&gt;-->
+    <!--<insert id="insert" keyProperty="" useGeneratedKeys="true">-->
+        <!--insert into dbo.ddc(ddc_no, d, auth_no, plan_no, tank, time_r, date1, time1, weight1, date2, time2, weight2, vehicle, vehicle1, t_customer, c_customer, s_customer, billid, crr_no, do_no, sendno, commodity, commodity1, new, color, tare, weight_tare, cover, batch, drums, packing, netweight, slop, delivered, serial, status, idno, charge, fee_no, remarks, original, faxno, oper, total_dono, type, fee, jobno, code)-->
+        <!--values (#{ddcNo}, #{d}, #{authNo}, #{planNo}, #{tank}, #{timeR}, #{date1}, #{time1}, #{weight1}, #{date2}, #{time2}, #{weight2}, #{vehicle}, #{vehicle1}, #{tCustomer}, #{cCustomer}, #{sCustomer}, #{billid}, #{crrNo}, #{doNo}, #{sendno}, #{commodity}, #{commodity1}, #{new}, #{color}, #{tare}, #{weightTare}, #{cover}, #{batch}, #{drums}, #{packing}, #{netweight}, #{slop}, #{delivered}, #{serial}, #{status}, #{idno}, #{charge}, #{feeNo}, #{remarks}, #{original}, #{faxno}, #{oper}, #{totalDono}, #{type}, #{fee}, #{jobno}, #{code})-->
+    <!--</insert>-->
+
+
+
+    <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
+    <!--<delete id="deleteById">-->
+        <!--delete from dbo.ddc where  = #{}-->
+    <!--</delete>-->
+
+</mapper>

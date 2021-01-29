@@ -17,12 +17,11 @@ public class Djob1ServiceImpl implements Djob1Service {
 
 
     @Override
-    public List<Djob1> Bycustomer(DjobVo djobVo) {
-        List<Djob1> djob1=djob1Mapper.Bycustomer(djobVo);
+    public List<Djob1> Bycustomer(String customer) {
+        List<Djob1> djob1=djob1Mapper.Bycustomer(customer);
         if (djob1!=null){
             return djob1;
         }
-
         return null;
     }
 

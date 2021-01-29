@@ -18,7 +18,7 @@ public interface Djob1Service {
      * @param customer 客户名
      * @return
      */
-    List<Djob1> Bycustomer(DjobVo djobVo);
+    List<Djob1> Bycustomer(String customer);
 
 
 

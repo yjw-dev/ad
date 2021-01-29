@@ -34,4 +34,11 @@ public interface SysDataService {
      * @return
      */
     public int updSysDataIdToJobNo(String jobNo);
+
+    /**
+     * 更新id
+     * @param draNo
+     * @return
+     */
+    public int updSysDataIdToDraNo(String draNo);
 }

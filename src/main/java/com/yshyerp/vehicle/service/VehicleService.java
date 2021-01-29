@@ -1,8 +1,13 @@
 package com.yshyerp.vehicle.service;
 
 
+import com.yshyerp.vehicle.entity.VehiW;
+import com.yshyerp.vehicle.entity.VehiWa;
 import com.yshyerp.vehicle.vo.TxtcVO;
 import com.yshyerp.vehicle.vo.VehicleNoVO;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 车辆业务类
@@ -15,6 +20,7 @@ public interface VehicleService {
      * @return
      */
     public VehicleNoVO getVehicleDetailByVehicleAndVehicle1(VehicleNoVO vo);
+
 
     /**
      * 根据箱号查询容积、箱重
@@ -29,5 +35,8 @@ public interface VehicleService {
      * @return
      */
     public Boolean checkVehicleIsNull(String vehicle);
+
+    List<VehiWa>  getyaajw(String vehicle);
+
 
 }

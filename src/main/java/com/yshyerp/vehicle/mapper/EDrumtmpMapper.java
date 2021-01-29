@@ -4,6 +4,7 @@ import com.yshyerp.vehicle.entity.EDrumtmp;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -23,5 +24,11 @@ public interface EDrumtmpMapper {
     //根据单号jobon  逻辑删除
     int updeletmp(String jobno);
 
+    //根据单号date  逻辑删除
+     int updeletmpdate(Timestamp date);
+
+
+
+   public EDrumtmp timestamp(Timestamp date);
 
 }

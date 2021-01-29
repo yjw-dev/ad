@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class Drumtmp1ServiceImpl implements Drumtmp1Service {
@@ -39,6 +40,28 @@ public class Drumtmp1ServiceImpl implements Drumtmp1Service {
     @Override
     public Drumtmp2 getdrumsum(String customer) {
         return drumtmp1Mapper.getdrumsum(customer);
+    }
+
+    @Override
+    public Drumtmp2 drumsum1(Map map) {
+        return drumtmp1Mapper.drumsum1(map);
+    }
+
+    @Override
+    public int updapz1(Drumtmp2 drumtmp2) {
+        return  drumtmp1Mapper.updapz1(drumtmp2);
+    }
+
+
+
+    @Override
+    public int updapz2(Drumtmp2 drumtmp2) {
+        return drumtmp1Mapper.updapz2(drumtmp2);
+    }
+
+    @Override
+    public int updapz3(Drumtmp2 drumtmp2) {
+        return drumtmp1Mapper.updapz3(drumtmp2);
     }
 
 

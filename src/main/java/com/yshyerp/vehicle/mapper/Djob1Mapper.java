@@ -17,7 +17,7 @@ public interface Djob1Mapper {
      *
      * @return
      */
-    List<Djob1> Bycustomer(DjobVo djobVo);
+    List<Djob1> Bycustomer(String customer);
 
 
 }

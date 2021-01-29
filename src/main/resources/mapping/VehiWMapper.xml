@@ -10,6 +10,16 @@
     <result column="jobno" property="jobno" jdbcType="CHAR" />
   </resultMap>
 
+
+
+  <resultMap id="WaResultMap" type="com.yshyerp.vehicle.entity.VehiWa" >
+    <result column="vehicle" property="vehicle" jdbcType="CHAR" />
+    <result column="vehicle1" property="vehicle1" jdbcType="CHAR" />
+    <result column="vehi_w" property="vehiW" jdbcType="DECIMAL" />
+    <result column="vehi_w2" property="vehiW2" jdbcType="DECIMAL" />
+    <result column="vehi_w3" property="vehiW3" jdbcType="DECIMAL" />
+  </resultMap>
+
   <resultMap id="vehiW2ResultMap" type="com.yshyerp.vehicle.entity.VehiW2" >
     <result column="vehicle" property="vehicle" jdbcType="CHAR" />
     <result column="vehi_w2" property="vehiW2" jdbcType="DECIMAL" />
@@ -38,6 +48,18 @@
       order by jobno desc
   </select>
 
+
+
+  <!--根据车牌号和挂车号查询核定载重-->
+  <select id="getyaajw" parameterType="String" resultMap="WaResultMap">
+      select *
+      FROM vehi_w
+      where  0=0
+      and    vehicle=#{vehicle}
+
+      order by jobno desc
+  </select>
+
   <!--根据车牌号查询准牵引重量-->
   <select id="getVehiW2ByVehicle" parameterType="String" resultMap="vehiW2ResultMap">
     SELECT distinct *
@@ -46,8 +68,29 @@
     order by jobno desc
   </select>
 
+
+  <!--根据车牌号查询准牵引重量-->
+  <select id="listvehiw2" parameterType="String" resultMap="vehiW2ResultMap">
+    SELECT distinct *
+    FROM vehi_w2
+    where vehicle = #{vehicle}
+    order by jobno desc
+  </select>
+
+
+
   <!--根据挂车号查询挂车重量-->
   <select id="getVehiW3ByVehicle1" parameterType="String" resultMap="vehiW3ResultMap">
+    SELECT distinct *
+    FROM vehi_w3
+    where vehicle1 = #{vehicle1}
+    order by jobno desc
+  </select>
+
+
+
+  <!--根据挂车号查询挂车重量-->
+  <select id="listvehiw3" parameterType="String" resultMap="vehiW3ResultMap">
     SELECT distinct *
     FROM vehi_w3
     where vehicle1 = #{vehicle1}

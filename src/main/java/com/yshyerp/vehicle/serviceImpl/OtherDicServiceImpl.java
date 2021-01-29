@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OtherDicServiceImpl implements OtherDicService {
@@ -15,10 +16,16 @@ public class OtherDicServiceImpl implements OtherDicService {
     OtherDictMapper otherDictMapper;
 
     //查询全部
-   public List<OtherDict> OtherDiclist(){
-        List<OtherDict> otherDictlist=otherDictMapper.OtherDictlist();
+   public List<Map<String,Object>> OtherDiclist(){
+       List<Map<String,Object>> otherDictlist=otherDictMapper.OtherDictlist();
 
         return otherDictlist;
+    }
+
+    @Override
+    public List<Map<String, Object>> dlist() {
+        List<Map<String,Object>> dlist=otherDictMapper.dlist();
+        return dlist;
     }
 
     @Override

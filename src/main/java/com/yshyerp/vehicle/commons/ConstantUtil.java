@@ -121,7 +121,7 @@ public class ConstantUtil {
     public static final String MESSAGE_TTDCTEMP_MSG1 = "校验码输入错误，请检查车辆是否选择错误!";
 
 
-
+    public static final String MESSAGE_TTDCTEMP_JOBNO = " 该提货计划已使用，不能操作!";
 
 
 

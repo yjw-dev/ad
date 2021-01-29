@@ -18,7 +18,7 @@ public interface EdrumsService {
      * @param
      * @return
      */
-    List<Edrums> Bycustomer(DjobVo djobVo);
+    List<Edrums> Bycustomer(String customer);
 
 
     //新增空桶

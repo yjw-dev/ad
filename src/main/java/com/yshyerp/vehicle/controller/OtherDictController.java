@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-
+/**
+ *
+ * 页面共有下拉框
+ */
 
 @Slf4j
 @RestController
@@ -37,11 +41,11 @@ public class OtherDictController {
     @PostMapping("otherDictlist")
     public Response otherDictlist() {
         try {
-            List<OtherDict> otherDictlist = otherDicService.OtherDiclist();
+            List<Map<String,Object>> otherDictlist = otherDicService.OtherDiclist();
             List<OtherDictVo> contract1VoList = new ArrayList<>();
-            for (OtherDict contract : otherDictlist) {
-                contract1VoList.add((OtherDictVo) ToolUtil.doCastVo(contract, new OtherDictVo()));
-            }
+//            for (OtherDict contract : otherDictlist) {
+//                contract1VoList.add((OtherDictVo) ToolUtil.doCastVo(contract, new OtherDictVo()));
+//            }
             return Response.success(ConstantUtil.SUCCESS_MESSAGE, contract1VoList, ConstantUtil.SUCCESS_CODE, null);
         } catch (Exception e) {
             e.printStackTrace();

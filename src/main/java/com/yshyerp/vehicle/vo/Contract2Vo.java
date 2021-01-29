@@ -7,8 +7,12 @@ import java.util.Date;
 @Data
 public class Contract2Vo {
 
+
+
+    //
     private String contractI;
 
+    //单号
     private String tank;
 
 

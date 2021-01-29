@@ -18,7 +18,7 @@
     <select id="mapedurms" parameterType="map" resultMap="BaseResultMap">
 
   SELECT *  from e_drums where
-   and customer=#{customer}
+      customer=#{customer}
     and s_customer=#{scustomer}
      and color=#{color}
      and cover=#{cover}

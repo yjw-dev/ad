@@ -26,7 +26,7 @@ public interface EdrumsMapper {
     /**
      * 根据客户名称查询
      */
-    List<Edrums> Bycustomer(DjobVo djobVo);
+    List<Edrums> Bycustomer(String customer);
 
     //新增空桶
     int  insEdrums(Edrums record);

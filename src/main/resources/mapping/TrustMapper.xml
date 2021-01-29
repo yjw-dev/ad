@@ -88,4 +88,20 @@
       where crr_no=#{crrNo}
     </update>
 
+
+
+
+    <!--根据货主名称和货品查询委托书信息-->
+    <select id="getcrrno" parameterType="string" resultMap="BaseResultMap">
+        SELECT crr_no,c_customer,commodity,balance,done FROM trust
+         where crr_no=#{crr_no}
+        and lock<![CDATA[<>]]>1 and ISNULL(d,' ')=' '
+    </select>
+
+
+
+
+
+
+
 </mapper>

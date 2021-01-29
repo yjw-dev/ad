@@ -48,8 +48,8 @@ public class Trust implements Serializable {
 
     private BigDecimal prtQty;
 
-    //结存MT
-    private BigDecimal balance;
+    //结 //结存MT
+       private double balance;
 
     private Boolean trust;
 

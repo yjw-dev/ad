@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 客户
@@ -29,7 +30,7 @@ public interface CustomerMapper {
      */
     public List<Customer> customerList();
 
-
+    public List<Map<String,Object>> customerget(String customer);
 
 
     /**
@@ -46,13 +47,13 @@ public interface CustomerMapper {
      */
     public List<DriverBlack> getDriverBlack(String idNo);
 
-//
-//    /**
-//     * 根据客户查询    drumlock
-//     * @param
-//     * @return
-//     */
-//
-//    public Customer getdrumlock(String customer);
+
+    /**
+     * 根据客户查询    drumlock
+     * @param
+     * @return
+     */
+
+    public Customer getdrumlock(String customer);
 
 }

@@ -23,6 +23,9 @@ public class SysDataServiceImpl implements SysDataService {
         }else if("cdc_no".equals(idName)) {
             int intCdcNo = Integer.parseInt(sysData.getCdcNo().trim());
             return String.format("%06d",++intCdcNo);
+        }else if ("dra_no".equals(idName)){
+            int intDraNo = Integer.parseInt(sysData.getCdcNo().trim());
+            return String.format("%06d",++intDraNo);
         }
         return null;
 
@@ -46,6 +49,11 @@ public class SysDataServiceImpl implements SysDataService {
     @Override
     public int updSysDataIdToJobNo(String jobNo) {
         return sysDataMapper.updSysDataIdToJobNo(jobNo);
+    }
+
+    @Override
+    public int updSysDataIdToDraNo(String draNo) {
+        return sysDataMapper.updSysDataIdToDraNo(draNo);
     }
 
 }

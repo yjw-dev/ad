@@ -34,4 +34,8 @@ public interface TrustMapper {
      * @return
      */
     public int updTrustByCrrNo(Map map);
+
+
+    //根据crrno查询
+    public Trust getcrrno(String crrNo);
 }

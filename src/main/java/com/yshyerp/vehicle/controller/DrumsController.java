@@ -19,6 +19,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * 验证00
+ */
 
 @Slf4j
 @RestController
@@ -39,34 +45,13 @@ public class DrumsController {
 
 
 
-    /**
-     * 查询drumtmp表
-     *
-     * @return
-     */
-    @PostMapping("drumtmpoutList")
-    public Response vehiPlanlist(@RequestBody Request<Drumtmpout> request) {
-        if(!StringUtils.isEmpty(request.getPageNum())&& !StringUtils.isEmpty(request.getPageSize())) {
-            PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        }
-        try {
-            //查询
-            List<Drumtmpout> drumtmpoutList = drumtmp1Service.listdrum();
-            PageInfo pageInfo = new PageInfo(drumtmpoutList);
-            return Response.success(ConstantUtil.SUCCESS_MESSAGE, pageInfo, ConstantUtil.SUCCESS_CODE, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-            return Response.error(ConstantUtil.SERVICE_ERROR_MESSAGE, ConstantUtil.SERVICE_ERROR_CODE, ConstantUtil.DOVO_ERROR_CODE);
-        }
-    }
-
 
 
     /**
      *    根据  灌号和货主查询
-     *      灌号      getTank
-     *      货主      getcCustomer
+     *      参数：
+     *      灌号      tank
+     *      货主      ccustomer
      * @return
      */
     @PostMapping("drumslist")
@@ -76,14 +61,13 @@ public class DrumsController {
             List<Drums> drumsList = drumsService.deumsmap(request.getData());
             List<Slop> slopList=slopaService.slopmap(request.getData());
             List<DrumslopVo> drumslopVos = new ArrayList<DrumslopVo>();
-
+            System.out.println(request.getData().getCCustomer());
             for (Drums drums : drumsList) {
                 drumslopVos.add((DrumslopVo) ToolUtil.doCastVo(drums, new DrumslopVo()));
            }
             for (Slop slop : slopList) {
                 drumslopVos.add((DrumslopVo) ToolUtil.doCastVo(slop, new DrumslopVo()));
             }
-
             return Response.success(ConstantUtil.SUCCESS_MESSAGE, drumslopVos, ConstantUtil.SUCCESS_CODE, null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,27 +83,22 @@ public class DrumsController {
      */
     @PostMapping("addinsert")
     public Response insert(@RequestBody Request<VehiPlan1> request) {
+        System.out.println(request.getData().getcCustomer());
+        System.out.println(asumtomer(request.getData().getcCustomer()));
         //请求参数校验
-        if (StringUtils.isEmpty(request)) {
-            return Response.error(ConstantUtil.REQUEST_NULL_MESSAGE, ConstantUtil.CLIENT_ERROR_CODE, ConstantUtil.REQUEST_NULL_CODE);
-        }
-        asumtomer(request.getData().getcCustomer());
-
-        VehiPlan1 vehiPlan1 = request.getData();
-        vehiPlan1.setrDate(new Date());
-        int updFlag =  vehiPlanService.insert(vehiPlan1);
-        if (updFlag > 0) {
-            return Response.success(ConstantUtil.SUCCESS_MESSAGE, true, ConstantUtil.SUCCESS_CODE, null);
-        }
+//        if (StringUtils.isEmpty(request)) {
+//            return Response.error(ConstantUtil.REQUEST_NULL_MESSAGE, ConstantUtil.CLIENT_ERROR_CODE, ConstantUtil.REQUEST_NULL_CODE);
+//        }
+//        asumtomer(request.getData().getcCustomer());
+//        System.out.println( asumtomer(request.getData().getcCustomer()));
+//        VehiPlan1 vehiPlan1 = request.getData();
+//        vehiPlan1.setrDate(new Date());
+//        int updFlag =  vehiPlanService.insert(vehiPlan1);
+//        if (updFlag > 0) {
+//            return Response.success(ConstantUtil.SUCCESS_MESSAGE, true, ConstantUtil.SUCCESS_CODE, null);
+//        }
         return Response.success(ConstantUtil.REQUEST_NULL_MESSAGE, false, ConstantUtil.REQUEST_NULL_CODE, null);
     }
-
-
-
-
-
-
-
 
 
     //数量校验
@@ -127,23 +106,42 @@ public class DrumsController {
         //根据货主  获取  DrumLock
         List<Customer> customer=customerService.getCustomerByCustomerName(ccustomer);
         BigDecimal lock=customer.get(0).getDrumLock();
-        int c=lock.intValue();
+        int  t_lock=lock.intValue();
+        System.out.println(t_lock+"t_lock");
         //根据货主    DRUMTMP  sum(drums)
         Drumtmp2 drumtmp2=drumtmp1Service.getCustomerByCustomerName(ccustomer);
         Integer t_in=drumtmp2.getSum1();
-
+        System.out.println(t_in+"t_in");
         //获取  vehi_plan        sum(drums)
-        Drumtmp2 drumtmp3=drumtmp1Service.getvehiplansum(ccustomer);
-        Integer t_in2=drumtmp3.getSum1();
-
+//        Drumtmp2 drumtmp3=drumtmp1Service.getvehiplansum(ccustomer);
+//        Integer t_in2=drumtmp3.getSum1();
         //获取  DRUMS     sum(balance)
         Drumtmp2 drumtmp5=drumtmp1Service.getdrumsum(ccustomer);
         Integer t_total=drumtmp5.getSum1();
-        if (t_total-t_in2-t_in<c){
-            return "该客户"+ccustomer+"已设定最低桶出货限制，库存数不得小于"+c+"桶，请查证',48,SOFTNAME";
+        System.out.println(t_total+"t_total");
+        if (t_total-t_in< t_lock && t_lock>0){
+            return "该客户"+ccustomer+"已设定最低桶出货限制，库存数不得小于"+t_lock+"桶，请查证',48,SOFTNAME";
         }
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -19,6 +19,8 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowCredentials(true) //是否发送cookie
                 .allowedHeaders("*");
     }
+
+
 //    @Bean(name = "multipartResolver")
 //    public CommonsMultipartResolver getCommonsMultipartResolver() {
 //        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

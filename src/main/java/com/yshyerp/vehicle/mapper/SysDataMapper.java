@@ -30,4 +30,11 @@ public interface SysDataMapper {
      * @return
      */
     public int updSysDataIdToJobNo(String jobNo);
+
+    /**
+     * 更新Id
+     * @param drano
+     * @return
+     */
+    public int updSysDataIdToDraNo(String draNo);
 }

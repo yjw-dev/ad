@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yshyerp.vehicle.mapper.Ttdc1Mapper">
+
+    <resultMap type="com.yshyerp.vehicle.entity.Ttdc1" id="TtdcMap">
+        <result property="d" column="d" jdbcType="VARCHAR"/>
+        <result property="ttdcNo" column="ttdc_no" jdbcType="VARCHAR"/>
+        <result property="authNo" column="auth_no" jdbcType="VARCHAR"/>
+        <result property="jobno" column="jobno" jdbcType="VARCHAR"/>
+        <result property="planNo" column="plan_no" jdbcType="VARCHAR"/>
+        <result property="vehicle" column="vehicle" jdbcType="VARCHAR"/>
+        <result property="vehicle1" column="Vehicle1" jdbcType="VARCHAR"/>
+
+        <result property="vehiW" column="vehi_w" jdbcType="NUMERIC"/>
+        <result property="vehiW1" column="vehi_w1" jdbcType="NUMERIC"/>
+        <result property="vehiW2" column="vehi_w2" jdbcType="NUMERIC"/>
+        <result property="vehiW3" column="vehi_w3" jdbcType="NUMERIC"/>
+        <result property="cNo" column="c_no" jdbcType="VARCHAR"/>
+        <result property="tank" column="tank" jdbcType="VARCHAR"/>
+        <result property="tCustomer" column="t_customer" jdbcType="VARCHAR"/>
+        <result property="cCustomer" column="c_customer" jdbcType="VARCHAR"/>
+        <result property="billid" column="billid" jdbcType="INTEGER"/>
+        <result property="crrNo" column="crr_no" jdbcType="VARCHAR"/>
+        <result property="doNo" column="do_no" jdbcType="VARCHAR"/>
+        <result property="faxno" column="faxno" jdbcType="VARCHAR"/>
+        <result property="bdo" column="bdo" jdbcType="OTHER"/>
+        <result property="commodity" column="commodity" jdbcType="VARCHAR"/>
+        <result property="commodity1" column="commodity1" jdbcType="VARCHAR"/>
+        <result property="timeR" column="time_r" jdbcType="VARCHAR"/>
+        <result property="date1" column="date1" jdbcType="TIMESTAMP"/>
+        <result property="time1" column="time1" jdbcType="VARCHAR"/>
+        <result property="weight1" column="weight1" jdbcType="NUMERIC"/>
+        <result property="date2" column="date2" jdbcType="TIMESTAMP"/>
+        <result property="time2" column="time2" jdbcType="VARCHAR"/>
+        <result property="weight2" column="weight2" jdbcType="NUMERIC"/>
+        <result property="netweight" column="netweight" jdbcType="NUMERIC"/>
+        <result property="density" column="density" jdbcType="NUMERIC"/>
+        <result property="volume" column="volume" jdbcType="NUMERIC"/>
+        <result property="delivered" column="delivered" jdbcType="VARCHAR"/>
+        <result property="quantity" column="quantity" jdbcType="NUMERIC"/>
+        <result property="sealno" column="sealno" jdbcType="VARCHAR"/>
+        <result property="station" column="station" jdbcType="VARCHAR"/>
+        <result property="wb" column="wb" jdbcType="VARCHAR"/>
+        <result property="idcode" column="idcode" jdbcType="VARCHAR"/>
+        <result property="sendno" column="sendno" jdbcType="VARCHAR"/>
+        <result property="idno" column="idno" jdbcType="VARCHAR"/>
+        <result property="original" column="original" jdbcType="OTHER"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+        <result property="operA" column="oper_a" jdbcType="VARCHAR"/>
+        <result property="operB" column="oper_b" jdbcType="VARCHAR"/>
+        <result property="remarkDo" column="remark_do" jdbcType="VARCHAR"/>
+        <result property="totalDono" column="total_dono" jdbcType="VARCHAR"/>
+        <result property="eWeight" column="e_weight" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="ttdclist" resultMap="TtdcMap">
+select
+* from ttdc
+where  do_no= #{dono}
+</select>
+
+
+</mapper>

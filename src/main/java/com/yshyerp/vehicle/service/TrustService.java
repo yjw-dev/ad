@@ -1,5 +1,6 @@
 package com.yshyerp.vehicle.service;
 
+import com.yshyerp.vehicle.entity.Trust;
 import com.yshyerp.vehicle.vo.TrustVO;
 
 import java.util.List;
@@ -36,4 +37,19 @@ public interface TrustService {
      * @return
      */
     public String checkTrustByRemarks(String remarks, String pageDoNo, double quantity, String tempStatus, int netWeight);
+
+
+
+
+    //根据crrno查询
+    public String getcrrno(String vehicle,String idno,String c_customer,int drums,String dono, String crrno,String commodity,String combo1);
+
+
+
+
+    //根据crrno查询  状态  1  和  2  时
+    public String getcrrno12(String
+                                     crrNo,String vehicle,String idno,String c_customer,int drums,String dono, String crrno,String commodity,
+                             String combo1,String status,int netWeight);
+
 }

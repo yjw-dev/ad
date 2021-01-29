@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -35,6 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> customerList() {
         List<Customer> customerList=customerMapper.customerList();
+        return customerList;
+    }
+
+    @Override
+    public List<Map<String,Object>> customerget(String customer) {
+        List<Map<String,Object>> customerList=customerMapper.customerget(customer);
         return customerList;
     }
 

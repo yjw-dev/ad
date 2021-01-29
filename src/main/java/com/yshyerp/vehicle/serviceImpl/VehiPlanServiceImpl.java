@@ -1,5 +1,6 @@
 package com.yshyerp.vehicle.serviceImpl;
 
+import com.yshyerp.vehicle.entity.Drums;
 import com.yshyerp.vehicle.entity.VehiPlan;
 import com.yshyerp.vehicle.entity.VehiPlan1;
 import com.yshyerp.vehicle.mapper.VehiPlanMapper;
@@ -7,7 +8,10 @@ import com.yshyerp.vehicle.service.VehiPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class VehiPlanServiceImpl implements VehiPlanService {
     @Autowired
@@ -15,8 +19,8 @@ public class VehiPlanServiceImpl implements VehiPlanService {
 
 
     @Override
-    public List<VehiPlan1> list() {
-        List<VehiPlan1> v=vehiPlanMapper.list();
+    public List<VehiPlan1> list(Map map) {
+        List<VehiPlan1> v=vehiPlanMapper.list(map);
         return v;
     }
 
@@ -29,6 +33,25 @@ public class VehiPlanServiceImpl implements VehiPlanService {
 
         return null;
     }
+
+    @Override
+    public List<VehiPlan1> thjh(String planNo) {
+        List<VehiPlan1> vehiPlan1=vehiPlanMapper.thjh(planNo);
+        return vehiPlan1;
+    }
+
+    @Override
+    public List<VehiPlan1> thjhcx(String planNo) {
+        List<VehiPlan1>  vehiPlan1=vehiPlanMapper.thjhcx(planNo);
+        return vehiPlan1;
+    }
+
+    @Override
+    public List<VehiPlan1> thjhcxddc(String planNo) {
+        List<VehiPlan1>  vehiPlan1=vehiPlanMapper.thjhcxddc(planNo);
+        return vehiPlan1;
+    }
+
 
     @Override
     public int insert(VehiPlan1 record) {
@@ -51,6 +74,19 @@ public class VehiPlanServiceImpl implements VehiPlanService {
     @Override
     public int updVehiplanId(String planNo) {
         int a=vehiPlanMapper.updVehiplanId(planNo);;
+        return a;
+    }
+
+    @Override
+    public int updplanNo(String planNo) {
+        int a=vehiPlanMapper.updplanNo(planNo);
+        return a;
+    }
+
+    @Override
+    public int updjobno(Map map) {
+
+        int a=vehiPlanMapper.updjobno(map);
         return a;
     }
 }

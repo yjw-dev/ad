@@ -1,10 +1,7 @@
 package com.yshyerp.vehicle.serviceImpl;
 
 import com.yshyerp.vehicle.commons.ConstantUtil;
-import com.yshyerp.vehicle.entity.CnoV;
-import com.yshyerp.vehicle.entity.VehiW;
-import com.yshyerp.vehicle.entity.VehiW2;
-import com.yshyerp.vehicle.entity.VehiW3;
+import com.yshyerp.vehicle.entity.*;
 import com.yshyerp.vehicle.mapper.VehiWMapper;
 import com.yshyerp.vehicle.service.VehicleService;
 import com.yshyerp.vehicle.vo.TxtcVO;
@@ -14,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 车辆信息
@@ -36,6 +35,12 @@ public class VehicleServiceImpl implements VehicleService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<VehiWa> getyaajw(String vehicle) {
+        List<VehiWa> list=vehiWMapper.getyaajw(vehicle);
+        return list;
     }
 
     /**

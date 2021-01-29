@@ -23,15 +23,14 @@ public class EdrumsServiceImpl implements EdrumsService {
     }
 
     @Override
-    public List<Edrums> Bycustomer(DjobVo djobVo) {
-        List<Edrums> edrumsList=edrumsMapper.Bycustomer(djobVo);
+    public List<Edrums> Bycustomer(String customer) {
+        List<Edrums> edrumsList=edrumsMapper.Bycustomer(customer);
         return edrumsList;
     }
 
     @Override
     public int insEdrums(Edrums record) {
-        Edrums edrums=new Edrums();
-        edrums.setDate(new Date());
+
         return edrumsMapper.insEdrums(record);
     }
 

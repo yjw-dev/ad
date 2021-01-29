@@ -7,7 +7,7 @@
   </resultMap>
 
 
-  <select id="getCustomerByCustomerName" parameterType="String" resultMap="BaseResultMap">
+    <select id="getCustomerByCustomerName" parameterType="String" resultMap="BaseResultMap">
      SELECT  sum(drums) as sum1 from DRUMTMP where
      c_customer=#{cCustomer} and status='NORMAL' and ISNULL(d,' ')=' '
     </select>
@@ -21,5 +21,49 @@
     <select id="getdrumsum" parameterType="String" resultMap="BaseResultMap">
       select sum(balance) as sum1 from DRUMS where c_customer=#{cCustomer}
     </select>
+
+
+    <select id="drumsum1" parameterType="map" resultMap="BaseResultMap">
+       	SELECT  sum(drums) as sum1 from DRUMTMP  where
+				     c_customer=#{c_customer}
+				    and s_customer=#{s_customer}
+				    and color=#{color}
+				    and new=#{n}
+				    and commodity=#{commodity}
+				    and packing=#{packing}
+				    and cover=#{cover}
+				    and tare=#{tare}
+				    and batch=#{batch}
+				    and tank=#{tabk}
+			    order by c_customer,tank
+    </select>
+
+    <update id="updapz1" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
+
+    update drumtmp set
+    fee=0,
+    code=#{code},
+    p_bar=#{p_bar}
+    where vehicle=#{vehicle}
+    and isin=0
+    and no1=#{nol}
+    and  ISNULL(d,' ')=' '
+    </update>
+
+    <update id="updapz2" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
+    update drumtmp set weight1=#{weight1}
+     where vehicle=#{vehicle}
+     and isin=0 and  ISNULL(d,' ')='
+    </update>
+
+    <update id="updapz3" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
+      update drumtmp set jobno=#{jobno} ,
+      isin=1
+      where vehicle=#{vehicle}
+      and no1=#{no1}
+      and isin=0 and  ISNULL(d,' ')=' '
+    </update>
+
+
 
 </mapper>

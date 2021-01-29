@@ -3,7 +3,7 @@ server:
   servlet:
     context-path: /yshyerp-vehicle/api
   # 端口
-  port: 8081
+  port: 8079
 # 数据库连接
 spring:
   datasource:
@@ -11,12 +11,10 @@ spring:
     #username: etss_inv
     #password: 66123
     #中远
-    url: jdbc:sqlserver://192.168.1.252;databaseName=invdbf
-    username: sa
-    password: 1qaz@wsx
-#    url: jdbc:sqlserver://10.208.2.7;databaseName=invdbf
-#    username: yiliu01
-#    password: 87654321
+
+    url: jdbc:sqlserver://10.208.2.7;databaseName=invdbf
+    username: yiliu01
+    password: 87654321
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
 #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
