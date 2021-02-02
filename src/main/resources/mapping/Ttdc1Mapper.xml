@@ -58,6 +58,7 @@
 select
 * from ttdc
 where  do_no= #{dono}
+and ISNULL(d,' ')=' '
 </select>
 
 

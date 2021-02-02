@@ -28,9 +28,9 @@
 <jdbcConnection
         driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 
-        connectionURL="jdbc:sqlserver://10.208.2.7;databaseName=invdbf"
-        userId="yiliu01"
-        password="87654321"
+        connectionURL="jdbc:sqlserver://DN--ID--YE;databaseName=invdbf"
+        userId="sa"
+        password="123456789"
 
         />
         <javaModelGenerator targetPackage="com.yshyerp.vehicle.entity" targetProject="src/main/java">
@@ -51,7 +51,7 @@
         <table tableName="tank" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>-->
-        <table tableName="vehi_w" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="tran_e" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
 

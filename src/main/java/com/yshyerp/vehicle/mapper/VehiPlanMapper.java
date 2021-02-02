@@ -59,6 +59,6 @@ public interface VehiPlanMapper {
 
     //修改   jobno
     int updjobno(Map map);
-
+    int  updddca(Map map);
 
 }

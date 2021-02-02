@@ -23,7 +23,13 @@ public interface DrumtmpoutService {
 
     //获取coun   对值  no1
     Drumtmpout  getcoun(String vehicle);
+    //获取已入仓的车
+    List<Drumtmpout>  getvehiclelist1(String vehicle);
 
+    List<Drumtmpout>  getvehiclelist0(String vehicle);
+    //修改 状态  出仓
+    int updachucahng(Map map);
+    int   updaweight1(Map map);
 
     /**
      * 根据罐号查询货品打印名称信息
@@ -32,7 +38,7 @@ public interface DrumtmpoutService {
      */
     public List<TankC> queryTankCListByTank(String tank);
 
-
+    int  updvehicle(Map map);
 
 
     int insertSelective(Drumtmpout record);
@@ -41,7 +47,7 @@ public interface DrumtmpoutService {
     int update(Drumtmpout record);
 
     //修改备用1
-    int  beiyong(Drumtmpout record);
+    int  beiyong(Map map);
 
     //删除
     int updateDd(String vehicle);

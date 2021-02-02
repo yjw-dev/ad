@@ -84,7 +84,7 @@ public class DrumsController {
     @PostMapping("addinsert")
     public Response insert(@RequestBody Request<VehiPlan1> request) {
         System.out.println(request.getData().getcCustomer());
-        System.out.println(asumtomer(request.getData().getcCustomer()));
+      //  System.out.println(asumtomer(request.getData().getcCustomer()));
         //请求参数校验
 //        if (StringUtils.isEmpty(request)) {
 //            return Response.error(ConstantUtil.REQUEST_NULL_MESSAGE, ConstantUtil.CLIENT_ERROR_CODE, ConstantUtil.REQUEST_NULL_CODE);
@@ -101,30 +101,30 @@ public class DrumsController {
     }
 
 
-    //数量校验
-    public String asumtomer(String ccustomer){
-        //根据货主  获取  DrumLock
-        List<Customer> customer=customerService.getCustomerByCustomerName(ccustomer);
-        BigDecimal lock=customer.get(0).getDrumLock();
-        int  t_lock=lock.intValue();
-        System.out.println(t_lock+"t_lock");
-        //根据货主    DRUMTMP  sum(drums)
-        Drumtmp2 drumtmp2=drumtmp1Service.getCustomerByCustomerName(ccustomer);
-        Integer t_in=drumtmp2.getSum1();
-        System.out.println(t_in+"t_in");
-        //获取  vehi_plan        sum(drums)
-//        Drumtmp2 drumtmp3=drumtmp1Service.getvehiplansum(ccustomer);
-//        Integer t_in2=drumtmp3.getSum1();
-        //获取  DRUMS     sum(balance)
-        Drumtmp2 drumtmp5=drumtmp1Service.getdrumsum(ccustomer);
-        Integer t_total=drumtmp5.getSum1();
-        System.out.println(t_total+"t_total");
-        if (t_total-t_in< t_lock && t_lock>0){
-            return "该客户"+ccustomer+"已设定最低桶出货限制，库存数不得小于"+t_lock+"桶，请查证',48,SOFTNAME";
-        }
-        return null;
-    }
-
+//    //数量校验
+//    public String asumtomer(String ccustomer){
+//        //根据货主  获取  DrumLock
+//        List<Customer> customer=customerService.getCustomerByCustomerName(ccustomer);
+//        BigDecimal lock=customer.get(0).getDrumLock();
+//        int  t_lock=lock.intValue();
+//        System.out.println(t_lock+"t_lock");
+//        //根据货主    DRUMTMP  sum(drums)
+//        Drumtmp2 drumtmp2=drumtmp1Service.getCustomerByCustomerName(ccustomer);
+//        Integer t_in=drumtmp2.getSum1();
+//        System.out.println(t_in+"t_in");
+//        //获取  vehi_plan        sum(drums)
+////        Drumtmp2 drumtmp3=drumtmp1Service.getvehiplansum(ccustomer);
+////        Integer t_in2=drumtmp3.getSum1();
+//        //获取  DRUMS     sum(balance)
+//        Drumtmp2 drumtmp5=drumtmp1Service.getdrumsum(ccustomer);
+//        Integer t_total=drumtmp5.getSum1();
+//        System.out.println(t_total+"t_total");
+//        if (t_total-t_in< t_lock && t_lock>0){
+//            return "该客户"+ccustomer+"已设定最低桶出货限制，库存数不得小于"+t_lock+"桶，请查证',48,SOFTNAME";
+//        }
+//        return null;
+//    }
+//
 
 
 

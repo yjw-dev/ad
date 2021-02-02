@@ -878,7 +878,11 @@
     update vehi_plan set jobno=#{jobno} where plan_no=#{planNo} and plan_type='DRA' and  ISNULL(d,' ')=' '
 </update>
 
+    <update id="updddca" parameterType="map">
 
+    update vehi_plan set jobno=#{jobno} where
+    plan_no=#{planNo} and plan_type='DDC' and  ISNULL(d,' ')=' '
+</update>
 
 
 

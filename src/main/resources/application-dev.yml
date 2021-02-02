@@ -6,13 +6,12 @@ server:
   port: 8079
 # 数据库连接
 spring:
-  datasource:
-    #url: jdbc:sqlserver://10.208.2.7:1433;databaseName=invdbf
+  datasource:    #url: jdbc:sqlserver://10.208.2.7:1433;databaseName=invdbf
     #username: etss_inv
     #password: 66123
-      url: jdbc:sqlserver://192.168.1.171;databaseName=invdbf
+      url: jdbc:sqlserver://192.168.1.252:1433;databaseName=invdbf
       username: sa
-      password: 888888
+      password: 1qaz@wsx
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   data:
     mongodb:

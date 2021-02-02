@@ -43,4 +43,6 @@ public interface VehiPlanService {
 
     //修改jobno
     int updjobno(Map map);
+
+    int  updddca(Map map);
 }

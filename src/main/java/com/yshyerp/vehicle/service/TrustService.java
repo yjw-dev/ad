@@ -42,7 +42,8 @@ public interface TrustService {
 
 
     //根据crrno查询
-    public String getcrrno(String vehicle,String idno,String c_customer,int drums,String dono, String crrno,String commodity,String combo1);
+    public String getcrrno(String vehicle,String idno,String c_customer,int drums,String dono, String crrno,String commodity,String combo1
+    , String status, int netWeight);
 
 
 

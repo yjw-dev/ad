@@ -26,7 +26,7 @@
         <result property="sendno" column="sendno" jdbcType="VARCHAR"/>
         <result property="commodity" column="commodity" jdbcType="VARCHAR"/>
         <result property="commodity1" column="commodity1" jdbcType="VARCHAR"/>
-        <result property="new" column="new" jdbcType="VARCHAR"/>
+        <result property="n" column="new" jdbcType="VARCHAR"/>
         <result property="color" column="color" jdbcType="VARCHAR"/>
         <result property="tare" column="tare" jdbcType="NUMERIC"/>
         <result property="weightTare" column="weight_tare" jdbcType="NUMERIC"/>
@@ -59,6 +59,7 @@
           *
         from ddc
         where  do_no= #{dono}
+         and ISNULL(d,' ')=' '
     </select>
 
 

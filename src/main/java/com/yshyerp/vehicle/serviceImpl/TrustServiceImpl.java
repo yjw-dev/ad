@@ -165,16 +165,83 @@ public class TrustServiceImpl implements TrustService {
     }
 
     @Override
-    public String getcrrno(String vehicle, String idno, String cCustomer, int drums, String dono, String crrNo, String commodity, String combo1) {
-        Trust trust = trustMapper.getcrrno(crrNo);
-        if (!cCustomer.equals(trust.getCustomer().trim())
-                && !"MOMENTIVE".equals(cCustomer) && !"HEXION".equals(trust.getCustomer())) {
-            return "委托书的客户和输入的客户不一致，请查证";
-        } else if (!commodity.equals(trust.getCommodity().trim())) {
-            return "委托书上的货物与输入的货物不一致";
-        } else if (trust.getBalance() <= 0 || trust.getDone()) {
-            return "此委托书已经完成出货!";
+    public String getcrrno(String vehicle, String idno, String cCustomer, int drums, String dono, String crrNo, String commodity, String combo1, String status, int netWeight) {
+        String[] trustList = crrNo.split(";");
+
+        for (String aTrust : trustList) {
+            Trust trust = trustMapper.getcrrno(crrNo);
+            if (!cCustomer.equals(trust.getCustomer().trim())
+                    && !"MOMENTIVE".equals(cCustomer) && !"HEXION".equals(trust.getCustomer())) {
+                return "委托书的客户和输入的客户不一致，请查证";
+            } else if (!commodity.equals(trust.getCommodity().trim())) {
+                return "委托书上的货物与输入的货物不一致";
+            } else if (trust.getBalance() <= 0 || trust.getDone()) {
+                return "此委托书已经完成出货!";
+            } else {
+                if (trustList.length == 1) {
+                    TtdcTemp ttdcTemp = tankService.queryQuanBulkByCrrNo(crrNo);
+                    DrumTmp drumTmp = drumService.queryQuanDrumByCrrNo(crrNo);
+                    BigDecimal t_bulk, t_drum;
+                    double a1 = 0.0d;
+                    BigDecimal a = new BigDecimal(0);
+                    a1 = trust.getBalance();
+                    BigDecimal BA_TEMP = new BigDecimal(a1);
+                    if ("1".equals(status) || "2".equals(status)) {
+                        if (ttdcTemp.getCoun() == 0) {
+                            t_bulk = a;
+                        } else {
+                            t_bulk = ttdcTemp.getQuanBulk();
+                        }
+                        if (drumTmp.getCoun() == 0) {
+                            t_drum = a;
+                        } else {
+                            t_drum = drumTmp.getQuanDrum();
+                        }
+                        BigDecimal bignum3 = t_bulk.add(t_drum);
+                        BA_TEMP = BA_TEMP.subtract(bignum3);
+                    }
+                    if ("3".equals(status)) {
+                        BA_TEMP = BA_TEMP;
+                    }
+                    BigDecimal netWeight1 = new BigDecimal(netWeight / 1000);
+                    if (BA_TEMP.compareTo(netWeight1) == -1) {
+                        //BA_TEMP  小于  netWeight1
+                        return "此委托书的数量小于可提货数量";
+                    }
+                    if (null==trust){
+                        return "此委托书单据不存在或被加锁";
+                    }
+
+                }else if (trustList.length >1){
+
+
+
+                    if (!cCustomer.equals(trust.getCustomer().trim())
+                            && !"MOMENTIVE".equals(cCustomer) && !"HEXION".equals(trust.getCustomer())) {
+                        return "委托书的客户和输入的客户不一致，请查证";
+                    } else if (!commodity.equals(trust.getCommodity().trim())) {
+                        return "委托书上的货物与输入的货物不一致";
+                    } else if (trust.getBalance() <= 0 || trust.getDone()) {
+                        return "'委托书单据"+trust.getCrrNo()+"不存在或被加锁 !'";
+                    }
+
+
+
+                }
+            }
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         return null;
@@ -184,8 +251,17 @@ public class TrustServiceImpl implements TrustService {
     public String getcrrno12(String crrNo, String vehicle, String idno, String c_customer, int drums, String dono, String crrno, String commodity, String combo1, String status, int netWeight) {
 
         Trust trust = trustMapper.getcrrno(crrNo);
-        TtdcTemp ttdcTemp = tankService.queryQuanBulkByCrrNo(crrno);
-        DrumTmp drumTmp = drumService.queryQuanDrumByCrrNo(crrno);
+
+//        if (!cCustomer.equals(trust.getCustomer().trim())
+//                && !"MOMENTIVE".equals(cCustomer) && !"HEXION".equals(trust.getCustomer())) {
+//            return "委托书的客户和输入的客户不一致，请查证";
+//        } else if (!commodity.equals(trust.getCommodity().trim())) {
+//            return "委托书上的货物与输入的货物不一致";
+//        } else if (trust.getBalance() <= 0 || trust.getDone()) {
+//            return "此委托书已经完成出货!";
+//        }
+        TtdcTemp ttdcTemp = tankService.queryQuanBulkByCrrNo(crrNo);
+        DrumTmp drumTmp = drumService.queryQuanDrumByCrrNo(crrNo);
         BigDecimal t_bulk, t_drum;
         double a1 = 0.0d;
         BigDecimal a = new BigDecimal(0);
@@ -216,6 +292,10 @@ public class TrustServiceImpl implements TrustService {
         if (null==trust){
             return "此委托书单据不存在或被加锁";
         }
+
+
+
+
         return null;
     }
 }

@@ -89,4 +89,10 @@ public class VehiPlanServiceImpl implements VehiPlanService {
         int a=vehiPlanMapper.updjobno(map);
         return a;
     }
+
+    @Override
+    public int updddca(Map map) {
+        int a=vehiPlanMapper.updddca(map);
+        return 0;
+    }
 }

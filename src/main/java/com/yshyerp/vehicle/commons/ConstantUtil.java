@@ -123,7 +123,7 @@ public class ConstantUtil {
 
     public static final String MESSAGE_TTDCTEMP_JOBNO = " 该提货计划已使用，不能操作!";
 
-
+    public static final String MESSAGE_NEW_IDCAR = "新车牌号已存在，不能修改";
 
 
 

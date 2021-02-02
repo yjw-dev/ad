@@ -56,7 +56,7 @@
         <result column="jobno" property="jobno" jdbcType="CHAR"/>
         <result column="code" property="code" jdbcType="CHAR"/>
         <result column="p_bar" property="pBar" jdbcType="BIT"/>
-
+        <result column="code" property="code" jdbcType="CHAR"/>
         <result column="coun" property="coun" jdbcType="INTEGER"/>
 
     </resultMap>
@@ -67,7 +67,6 @@
 
     <select id="listdrumid" parameterType="com.yshyerp.vehicle.entity.Drumtmpout" resultMap="BaseResultMap">
        SELECT *  FROM drumtmp WHERE  ISNULL(d,' ')=' '  and  plan_no=#{planNo}  order by id
-
     </select>
 
     <select id="getcoun" parameterType="String" resultMap="BaseResultMap">
@@ -75,19 +74,35 @@
     vehicle = #{vehicle}  and ISNULL(d,' ')=' '
     </select>
 
-    <update id="updachushan" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
-     update drumtmp set
-             d='D'
-        where
-         no1=#{no1}  and
-         vehicle = #{vehicle}  and isin=0 and  ISNULL(d,' ')=' '
+    <select id="getvehiclelist0" parameterType="String" resultMap="BaseResultMap">
+    SELECT  * from drumtmp  WHERE   ISIN=0  and
+    vehicle = #{vehicle}  and ISNULL(d,' ')=' '
+    </select>
+
+
+    <select id="getvehiclelist1" parameterType="String" resultMap="BaseResultMap">
+      SELECT * FROM drumtmp where vehicle = #{vehicle}
+       and isin=1 and  ISNULL(d,' ')=' '
+    </select>
+
+
+    <update id="updvehicle" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
+update drumtmp set  vehicle = #{vehiclea}
+ where  vehicle = #{vehicle}  and isin=1 and  ISNULL(d,' ')=' '
     </update>
 
 
+    <update id="updachushan" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
+     update drumtmp set
+             d='D'
+         where
+         no1=#{no1}  and
+         vehicle = #{vehicle}
+         and isin=0 and  ISNULL(d,' ')=' '
+    </update>
+
 
     <update id="beiyong" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
-
-
      update drumtmp set
             fee=#{fee},
             code=#{code},
@@ -105,13 +120,18 @@
     </update>
 
 
-
     <update id="updaweight1" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
     update drumtmp set weight1=#{weight1}
     where vehicle=#{vehicle} and isin=0 and  ISNULL(d,' ')=' '
 
     </update>
 
+    <update id="updachucahng" parameterType="com.yshyerp.vehicle.entity.Drumtmpout">
+
+  update drumtmp set jobno=#{jobno},isin=1 where
+    vehicle=#{vehicle}
+    and no1=#{no1} and isin=0 and  ISNULL(d,' ')=' '
+    </update>
 
 
     <!--通过主键修改数据-->

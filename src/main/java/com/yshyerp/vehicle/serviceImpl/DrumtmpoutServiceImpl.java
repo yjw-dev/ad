@@ -39,6 +39,14 @@ public class DrumtmpoutServiceImpl implements DrumtmpoutService {
 
     //新增
     public int insert(Drumtmpout record) {
+
+
+
+
+
+
+
+
       int a=drumtmpoutMapper.insert(record);
       return a;
     }
@@ -49,6 +57,31 @@ public class DrumtmpoutServiceImpl implements DrumtmpoutService {
         return drumtmpout;
     }
 
+    @Override
+    public List<Drumtmpout> getvehiclelist1(String vehicle) {
+        //获取已入仓的车
+        List<Drumtmpout>  list=drumtmpoutMapper.getvehiclelist1(vehicle);
+        return list;
+    }
+
+    @Override
+    public List<Drumtmpout> getvehiclelist0(String vehicle) {
+        List<Drumtmpout>  list=drumtmpoutMapper.getvehiclelist0(vehicle);
+        return list;
+    }
+
+    @Override
+    public int updachucahng(Map map) {
+        int a=drumtmpoutMapper.updachucahng(map);
+        return a;
+    }
+
+    @Override
+    public int updaweight1(Map map) {
+        int a=drumtmpoutMapper.updaweight1(map);
+        return 0;
+    }
+
     //根据  灌号tank 获取    comm1      新增加入***
     @Override
     public List<TankC> queryTankCListByTank(String tank) {
@@ -57,6 +90,12 @@ public class DrumtmpoutServiceImpl implements DrumtmpoutService {
 
         }
         return tankCList;
+    }
+
+    @Override
+    public int updvehicle(Map map) {
+        int a=drumtmpoutMapper.updvehicle(map);
+        return a;
     }
 
 
@@ -70,8 +109,8 @@ public class DrumtmpoutServiceImpl implements DrumtmpoutService {
     }
 
     @Override
-    public int beiyong(Drumtmpout record) {
-        int a=drumtmpoutMapper.beiyong(record);
+    public int beiyong(Map map) {
+        int a=drumtmpoutMapper.beiyong(map);
         return a;
     }
 
